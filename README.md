@@ -1,2 +1,10 @@
 # Club-de-Fans-de-Guns-n-Roses
-Practica de ATSWM 2026
+## Tenemos el esquema principal del Frontend:
+''
+index.html (portal informativo)
+login.html
+marketplace.html
+eventos.html
+mod.html
+style.css
+''
