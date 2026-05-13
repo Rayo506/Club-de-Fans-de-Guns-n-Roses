@@ -2,10 +2,10 @@
 ## Tenemos el esquema principal del Frontend:
 ```
 index.html (portal informativo)
-login.html
-marketplace.html
-eventos.html
-mod.html
+login.html (login/registro)
+marketplace.html (marketplace de memorabilia)
+eventos.html (eventos)
+mod.html (panel de moderación)
 style.css
-
+logistica.js
   ```
