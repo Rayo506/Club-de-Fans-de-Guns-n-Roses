@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,9 @@
     <link rel="stylesheet" href="css/eventos.css">
     <title>Club de Fans de Guns n' Roses</title>
 </head>
+
 <body>
-        <nav class="nav-global">
+    <nav class="nav-global">
         <div class="nav-izquierda">
             <img src="img/logo.png" alt="Logo Guns N' Roses" class="nav-logo">
             <h1 class="nav-titulo">Club de Fans de Guns n' Roses</h1>
@@ -24,11 +26,68 @@
         <div style="clear: both;"></div>
     </nav>
 
-    <main></main>
+    <main>
+        <section class="cabecera-eventos">
+            
+            <div class="fila-titulo">
+                <h1 class="titulo-pagina">Eventos</h1>
+                <button class="btn-crear-evento">
+                    <img src="img/icon-add.png" alt="Add" class="icono-btn">
+                    Crear evento
+                </button>
+                <div style="clear: both;"></div>
+            </div>
+
+            <div class="barra-filtros">
+                <div class="filtro-buscador">
+                    <input type="text" placeholder="Buscar eventos..." id="buscar-evento">
+                </div>
+                
+                <div class="filtro-controles">
+                    <label for="filtro-fecha">Fecha:</label>
+                    <input type="date" id="filtro-fecha" placeholder="dd/mm/aaaa">
+
+                    <label for="filtro-lugar">Lugar:</label>
+                    <select id="filtro-lugar">
+                        <option value="todos">Todos</option>
+                        <option value="madrid">Madrid</option>
+                        <option value="barcelona">Barcelona</option>
+                        <option value="valencia">Valencia</option>
+                    </select>
+                </div>
+                <div style="clear: both;"></div>
+            </div>
+        </section>
+
+        <section class="listado-eventos">
+            <div id="eventos-contenedor-js">
+                
+                <article class="tarjeta-evento-horizontal">
+                    <div class="evento-img-contenedor">
+                        <img src="img/evento-placeholder.jpg" alt="Concierto Tributo">
+                    </div>
+                    
+                    <div class="evento-detalles">
+                        <h3>Concierto Tributo Guns N' Roses - 20/06/2026</h3>
+                        <p>Madrid | Plazas disponibles: <strong>45/100</strong></p>
+                    </div>
+                    
+                    <div class="evento-acciones">
+                        <a href="detalles-evento.html" class="btn-evento-link btn-ver">Ver evento</a>
+                        <a href="#" class="btn-evento-link btn-apuntar">Apuntarse</a>
+                    </div>
+                    
+                    <div style="clear: both;"></div>
+                </article>
+
+            </div>
+        </section>
+    </main>
 
     <footer>
         <p>&copy; 2026 Club de Fans de Guns n' Roses. Todos los derechos reservados.</p>
         <p>Desarrollado con pasión por el Equipo GRUPO8.</p>
     </footer>
 </body>
+
 </html>

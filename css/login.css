@@ -1,0 +1,144 @@
+/* CONTENEDOR DE FORMULARIOS (BLOQUE AZULADO SUAVE SUPERIOR) */
+.contenedor-formularios {
+    background-color: #e6f2ff;
+    padding: 40px 30px;
+    margin-bottom: 40px;
+    border-radius: 6px;
+    border: 1px solid #cce3ff;
+}
+
+/* Distribución en dos columnas al 50% */
+.columna-login {
+    float: left;
+    width: 45%;
+    margin-right: 5%;
+}
+
+.columna-registro {
+    float: left;
+    width: 45%;
+    margin-left: 5%;
+}
+
+/* Títulos de los formularios */
+.contenedor-formularios h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #004499;
+}
+
+/* ESTILOS DE LOS CAMPOS Y BOTONES (INPUTS Y LABELS) */
+.campo-form {
+    margin-bottom: 20px;
+}
+
+.campo-form label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: #222222;
+    font-weight: bold;
+}
+
+/* Las cajas de texto blancas con un sutil borde azulado al enfocarlas */
+.campo-form input {
+    width: 100%;
+    max-width: 350px;
+    height: 35px;
+    padding: 5px 10px;
+    border: 1px solid #b3d7ff;
+    background-color: #ffffff;
+    font-size: 14px;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
+/* Botones con estilo acorde a la nueva paleta corporativa */
+.btn-form {
+    display: block;
+    background-color: #0066cc;
+    color: #ffffff;
+    border: none;
+    padding: 10px 30px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.btn-form:hover {
+    background-color: #004499;
+}
+
+/* Enlace de recuperar contraseña */
+.link-olvido {
+    display: inline-block;
+    font-size: 13px;
+    color: #0055b3;
+    text-decoration: underline;
+}
+
+/* SECCIÓN INFERIOR: ROLES DE USUARIO (3 COLUMNAS LIMPIAS) */
+.seccion-roles {
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* Eliminado el fondo gris plano: Ahora es un título limpio y elegante */
+.titulo-roles {
+    text-align: center;
+    padding: 12px 0;
+    font-size: 26px;
+    font-weight: bold;
+    color: #1a1a1a;
+    margin-bottom: 35px;
+    border-bottom: 2px solid #e6f2ff;
+}
+
+.contenedor-tarjetas-roles {
+    width: 100%;
+    text-align: center;
+}
+
+/* Cada una de las 3 columnas de roles */
+.tarjeta-role, .tarjeta-rol {
+    float: left;
+    width: 33.33%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+/* Cuadrado para los iconos (Eliminado el gris por un fondo blanco o transparente con borde) */
+.rol-img-placeholder {
+    width: 120px;
+    height: 120px;
+    background-color: #ffffff;
+    border: 2px solid #cce3ff;
+    margin: 0 auto 15px auto;
+    display: block;
+    border-radius: 8px;
+}
+
+.rol-img-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Textos informativos debajo de los iconos */
+.rol-nombre {
+    font-weight: bold;
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #004499;
+    margin-bottom: 4px;
+}
+
+.rol-desc {
+    font-size: 13px;
+    color: #555555;
+}

@@ -1,6 +1,4 @@
-/* ==========================================
-   CONFIGURACIÓN GENERAL Y RESET
-   ========================================== */
+/* CONFIGURACIÓN GENERAL Y RESET */
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -9,15 +7,13 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4; /* Un tono gris muy claro para el fondo general */
+    background-color: #f4f4f4; 
     color: #333333;
 }
 
-/* ==========================================
-   ESTILOS DEL NAV (BARRA DE NAVEGACIÓN)
-   ========================================== */
+/* ESTILOS DEL NAV (BARRA DE NAVEGACIÓN) */
 .nav-global {
-    background-color: #ffffff; /* Fondo blanco solicitado */
+    background-color: #ffffff;
     padding: 10px 20px;
     border-bottom: 2px solid #e0e0e0;
     display: block;
@@ -33,13 +29,13 @@ body {
 .nav-logo {
     width: 80px;
     height: 50px;
-    vertical-align: middle; /* Alinea la imagen verticalmente con el texto */
+    vertical-align: middle;
     margin-right: 15px;
     display: inline-block;
 }
 
 .nav-titulo {
-    font-size: 22px; /* Tamaño del h1 más grande solo en el nav */
+    font-size: 22px;
     font-weight: bold;
     display: inline-block;
     vertical-align: middle;
@@ -50,7 +46,7 @@ body {
 .nav-derecha {
     float: right;
     display: block;
-    margin-top: 10px; /* Centrado visual respecto a la altura del logo */
+    margin-top: 10px;
 }
 
 .nav-menu {
@@ -60,8 +56,8 @@ body {
 }
 
 .nav-item {
-    display: inline-block; /* Convierte la lista en bloques horizontales */
-    margin-left: 15px;    /* Separación entre los bloques */
+    display: inline-block;
+    margin-left: 15px;
 }
 
 .nav-item a {
@@ -70,38 +66,34 @@ body {
     color: #333333;
     padding: 8px 16px;
     font-weight: bold;
-    border-radius: 4px; /* Bordes ligeramente suavizados */
-    transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave */
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Efecto Hover: Azulado claro al pasar el cursor */
+/* Azulado claro al pasar el cursor */
 .nav-item a:hover {
-    background-color: #e6f2ff; /* Fondo azulado muy claro */
-    color: #0066cc;            /* Texto azul destacado */
+    background-color: #e6f2ff;
+    color: #0066cc;
 }
 
-/* ==========================================
-   ESTILOS DEL MAIN (CUERPO DE LA WEB)
-   ========================================== */
+/* ESTILOS DEL MAIN (CUERPO DE LA WEB) */
 main {
-    background-color: #ffffff; /* Fondo por defecto para todas las páginas */
-    min-height: 400px;         /* Altura mínima para que no se pegue el footer si hay poco contenido */
+    background-color: #ffffff;
+    min-height: 400px;
     padding: 40px 20px;
     margin: 20px auto;
-    max-width: 1200px;         /* Centra el contenido en pantallas grandes */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Sombra sutil profesional */
+    max-width: 1200px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
-/* ==========================================
-   ESTILOS DEL FOOTER (PIE DE PÁGINA)
-   ========================================== */
+/* ESTILOS DEL FOOTER (PIE DE PÁGINA) */
 footer {
-    background-color: #000000; /* Fondo negro */
-    color: #ffffff;            /* Texto blanco */
-    text-align: center;        /* Texto centrado */
+    background-color: #000000;
+    color: #ffffff;
+    text-align: center;
     padding: 25px 20px;
     font-size: 14px;
     line-height: 1.6;
-    clear: both;               /* Asegura que se posicione debajo de los flotados del nav */
+    clear: both;
     width: 100%;
 }

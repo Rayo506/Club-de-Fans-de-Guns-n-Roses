@@ -1,6 +1,4 @@
-/* ==========================================
-   1. HERO: IMAGEN DE LA BANDA CENTRADA
-   ========================================== */
+/* HERO: IMAGEN DE LA BANDA CENTRADA */
 .hero-banda {
     text-align: center;
     margin-bottom: 30px;
@@ -9,16 +7,14 @@
 
 .img-banc {
     width: 100%;
-    max-width: 100%; /* Ocupa todo el ancho disponible del main de forma fluida */
+    max-width: 100%;
     height: auto;
-    max-height: 400px; /* Limita la altura para que se aprecie bien el banner */
-    object-fit: cover; /* Recorta la imagen de forma elegante si es necesario */
+    max-height: 400px;
+    object-fit: cover;
     border: 1px solid #cccccc;
 }
 
-/* ==========================================
-   2. BLOQUE DE DOS COLUMNAS (HISTORIA Y NOTICIAS)
-   ========================================== */
+/* BLOQUE DE DOS COLUMNAS (HISTORIA Y NOTICIAS) */
 .contenedor-dos-columnas {
     width: 100%;
     margin-bottom: 40px;
@@ -30,14 +26,14 @@
     width: 58%;
     border: 1px solid #333333;
     padding: 20px;
-    height: auto; /*espacio para el boton*/
+    height: auto;
 }
 
 .caja-historia p {
     font-size: 14px;
     line-height: 1.5;
     color: #444444;
-    margin-bottom: 15px; /* Reducido de 50px a 15px para eliminar el hueco */
+    margin-bottom: 15px;
 }
 
 /* Columna Derecha: Últimas Noticias */
@@ -62,7 +58,7 @@
     font-size: 14px;
     line-height: 1.5;
     color: #444444;
-    margin-bottom: 50px; /* Espacio para que el botón no pise el texto */
+    margin-bottom: 50px;
 }
 
 /* El botón ahora fluye de manera natural según el contenido */
@@ -106,9 +102,7 @@
     background-color: #f0f0f0;
 }
 
-/* ==========================================
-   3. BLOQUE INFERIOR: ÚLTIMOS EVENTOS (3 TARJETAS)
-   ========================================== */
+/* BLOQUE INFERIOR: ÚLTIMOS EVENTOS (3 TARJETAS) */
 .seccion-eventos {
     width: 100%;
     margin-top: 20px;
@@ -116,7 +110,6 @@
 
 .titulo-eventos {
     display: inline-block;
-    border: 1px solid #333333;
     padding: 6px 15px;
     font-size: 16px;
     font-weight: bold;
@@ -130,7 +123,7 @@
 /* Cada una de las 3 tarjetas en horizontal */
 .tarjeta-evento {
     float: left;
-    width: 32%; /* Reparte el espacio equitativamente */
+    width: 32%;
     margin-right: 2%; /* Separación entre tarjetas */
     border: 1px solid #333333;
     padding: 10px;
@@ -196,6 +189,3 @@
 .contenido-oculto {
     display: none;
 }
-
-
-
