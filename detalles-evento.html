@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/detalle-evento.css">
+    <link rel="icon" type="image/png" href="img/logo.png">
+    <title>Club de Fans de Guns n' Roses</title>
+</head>
+
+<body>
+    <nav class="nav-global">
+        <div class="nav-izquierda">
+            <img src="img/logo.png" alt="Logo Guns N' Roses" class="nav-logo">
+            <h1 class="nav-titulo">Club de Fans de Guns n' Roses</h1>
+        </div>
+        <div class="nav-derecha">
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html">Inicio</a></li>
+                <li class="nav-item"><a href="marketplace.html">Marketplace</a></li>
+                <li class="nav-item"><a href="eventos.html">Evento</a></li>
+                <li class="nav-item"><a href="login.html">Login</a></li>
+            </ul>
+        </div>
+        <div style="clear: both;"></div>
+    </nav>
+
+    <main>
+        <section class="detalle-evento-contenedor">
+
+            <article class="tarjeta-detalle-evento">
+                <h1 id="evento-titulo">Título del evento</h1>
+
+                <div class="evento-img-detalle">
+                    <img src="img/evento-placeholder.jpg" alt="Imagen del evento" id="evento-imagen">
+                </div>
+
+                <div class="evento-info-bloque">
+                    <p><strong>Creado por:</strong> <span id="evento-creador">Nombre del organizador</span></p>
+
+                    <p><strong>Fecha:</strong> <span id="evento-fecha">dd/mm/aaaa</span></p>
+
+                    <p><strong>Hora:</strong> <span id="evento-hora">00:00</span></p>
+
+                    <p><strong>Localización:</strong> <span id="evento-localizacion">Ciudad / Recinto</span></p>
+
+                    <p><strong>Precio:</strong> <span id="evento-precio">Gratis / XX.XX€</span></p>
+
+                    <p><strong>Plazas disponibles:</strong> <span id="evento-plazas-actuales">0</span> / <span
+                            id="evento-plazas-totales">0</span></p>
+                </div>
+
+                <div class="evento-descripcion-bloque">
+                    <h2>Descripción del evento</h2>
+                    <p id="evento-descripcion">Aquí se inyectará todo el texto extendido correspondiente a la
+                        información detallada del evento dinámicamente desde el JSON o Backend.</p>
+                </div>
+            </article>
+
+            <div class="evento-detalle-acciones">
+                <button type="button" class="btn-detalle-evento btn-detalle-atras" id="btn-back"
+                    onclick="history.back()">Atrás</button>
+                <button type="button" class="btn-detalle-evento btn-detalle-apuntar"
+                    id="btn-apuntar-evento">Apuntarse</button>
+            </div>
+
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Club de Fans de Guns n' Roses. Todos los derechos reservados.</p>
+        <p>Desarrollado con pasión por el Equipo GRUPO8.</p>
+    </footer>
+</body>
+
+</html>
+
+<!--
+Para hacer accion hacia atras
+const btnAtras = document.getElementById('btn-back');
+btnAtras.addEventListener('click', function(event) {
+    event.preventDefault();
+    window.history.back();
+});
+
+Ejemplo para el JS, primero sustituimos el que ya existe o direcamente lo comentamos para que crea de cero:
+document.getElementById('evento-titulo').textContent = "Concierto Tributo en Madrid";
+document.getElementById('evento-fecha').textContent = "22/02/2026"; //
+document.getElementById('evento-creador').textContent = "AdminGrupo8";
+document.getElementById('evento-imagen').src = "img/concierto.jpg";
+-->

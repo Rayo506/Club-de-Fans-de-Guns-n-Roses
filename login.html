@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/login.css">
+    <link rel="icon" type="image/png" href="img/logo.png">
     <title>Club de Fans de Guns n' Roses</title>
 </head>
 
@@ -84,20 +85,25 @@
                     <p class="rol-desc">Roles de usuario</p>
                 </div>
 
-                <div class="rol_moderator tarjeta-rol">
+                <!--Si tiene acceso el usuario entonces estara habilitado el click si no no-->
+                <div class="rol_moderator tarjeta-rol"> 
+                    <a href="/mod.html">
                     <div class="rol-img-placeholder">
                         <img src="img/mod.png" alt="Icono Moderador">
                     </div>
                     <p class="rol-nombre">MODERADOR</p>
                     <p class="rol-desc">Editor de contenido</p>
+                    </a>
                 </div>
 
                 <div class="rol_admin tarjeta-rol">
+                    <a href="/mod.html">
                     <div class="rol-img-placeholder">
                         <img src="img/admin.png" alt="Icono Administrador">
                     </div>
                     <p class="rol-nombre">ADMINISTRADOR</p>
                     <p class="rol-desc">Control total</p>
+                    </a>
                 </div>
                 
                 <div style="clear: both;"></div>

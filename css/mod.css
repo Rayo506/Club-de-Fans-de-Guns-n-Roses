@@ -1,0 +1,229 @@
+/* ==========================================================================
+   1. ESTRUCTURA GLOBAL DEL PANEL (GRID CON FLOATS)
+   ========================================================================== */
+.contenedor-moderacion {
+    width: 100%;
+    margin: 20px auto;
+    box-sizing: border-box;
+}
+
+/* Menú lateral izquierdo (Gris suave de fondo del boceto) */
+.sidebar-moderador {
+    float: left;
+    width: 22%;
+    background-color: #f2f2f2;
+    border: 1px solid #dddddd;
+    border-radius: 6px;
+    padding: 15px;
+    box-sizing: border-box;
+    min-height: 600px;
+}
+
+/* Contenido principal derecho (Fondo gris del bloque grande) */
+.contenido-moderacion {
+    float: right;
+    width: 75%;
+    background-color: #f2f2f2;
+    border: 1px solid #dddddd;
+    border-radius: 6px;
+    padding: 25px;
+    box-sizing: border-box;
+    min-height: 600px;
+}
+
+/* ==========================================================================
+   2. ELEMENTOS DEL MENÚ LATERAL (ASIDE)
+   ========================================================================== */
+.bloque-bienvenida {
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    padding: 15px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.bloque-bienvenida h3 {
+    margin: 0;
+    font-size: 16px;
+    color: #333333;
+    line-height: 1.4;
+    font-weight: bold;
+}
+
+/* Enlaces del menú vertical */
+.menu-moderador .item-menu {
+    display: block;
+    background-color: #ffffff;
+    color: #333333;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+/* Pestaña activa (Azul destacado del boceto) */
+.menu-moderador .item-menu.active {
+    background-color: #66b2ff; /* Mismo azul seleccionado en tu boceto */
+    color: #ffffff;
+    border-color: #3399ff;
+}
+
+.menu-moderador .item-menu:hover:not(.active) {
+    background-color: #e6f2ff;
+    color: #004499;
+}
+
+/* Botón especial para Salir */
+.menu-moderador .btn-cerrar-sesion {
+    margin-top: 40px; /* Separación marcada hacia abajo */
+    background-color: #ffffff;
+}
+
+.menu-moderador .btn-cerrar-sesion:hover {
+    background-color: #ffe6e6;
+    color: #cc0000;
+    border-color: #ff9999;
+}
+
+/* ==========================================================================
+   3. BLOQUES DE CONTADORES SUPERIORES (4 COLUMNAS)
+   ========================================================================== */
+.titulo-seccion {
+    font-size: 24px;
+    color: #1a1a1a;
+    margin-top: 0;
+    margin-bottom: 25px;
+    font-weight: bold;
+}
+
+.bloques-contador-container {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+/* Tarjetas blancas de los contadores */
+.tarjeta-contador {
+    float: left;
+    width: 22%;
+    margin-right: 4%;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    padding: 15px 10px;
+    box-sizing: border-box;
+    text-align: center;
+    min-height: 100px;
+}
+
+.tarjeta-contador:last-child {
+    margin-right: 0; /* Elimina el margen del cuarto bloque */
+}
+
+/* Estilo para los números grandes de JS */
+.numero-contador {
+    display: block;
+    font-size: 22px;
+    font-weight: bold;
+    color: #004499; /* Tono azul para dar vida al número */
+    margin-bottom: 5px;
+}
+
+.txt-contador {
+    margin: 0;
+    font-size: 14px;
+    color: #444444;
+    line-height: 1.3;
+}
+
+/* ==========================================================================
+   4. TABLAS DE MODERACIÓN INTERNAS
+   ========================================================================== */
+.seccion-tabla-mod {
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    padding: 15px;
+    margin-bottom: 25px;
+    box-sizing: border-box;
+}
+
+.seccion-tabla-mod h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: #1a1a1a;
+    font-weight: bold;
+}
+
+/* Estructuración limpia de la tabla nativa */
+.tabla-moderacion {
+    width: 100%;
+    border-collapse: collapse; /* Une los bordes de celda */
+    text-align: left;
+    font-size: 14px;
+}
+
+.tabla-moderacion th, 
+.tabla-moderacion td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #eeeeee;
+}
+
+/* Cabecera de la tabla idéntica a los textos del dibujo */
+.tabla-moderacion th {
+    font-weight: bold;
+    color: #666666;
+    border-bottom: 2px solid #cccccc;
+}
+
+.tabla-moderacion td {
+    color: #333333;
+}
+
+/* Etiquetas de estado */
+.estado-pendiente {
+    background-color: #fff3cd;
+    color: #856404;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* Pequeños botones interactivos de las acciones */
+.btn-accion-mod {
+    padding: 4px 10px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 3px;
+    border: 1px solid #cccccc;
+    background-color: #ffffff;
+    margin-right: 5px;
+    transition: background-color 0.1s;
+}
+
+.btn-validar {
+    color: #28a745;
+    border-color: #28a745;
+}
+
+.btn-validar:hover {
+    background-color: #28a745;
+    color: #ffffff;
+}
+
+.btn-rechazar {
+    color: #dc3545;
+    border-color: #dc3545;
+}
+
+.btn-rechazar:hover {
+    background-color: #dc3545;
+    color: #ffffff;
+}
