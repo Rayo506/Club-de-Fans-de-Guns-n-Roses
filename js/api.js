@@ -1,5 +1,5 @@
 (function () {
-    var API_BASE = window.GNR_API_BASE || 'http://localhost:5000/api';
+    var API_BASE = window.GNR_API_BASE || '/api';
 
     function request(endpoint, options) {
         options = options || {};
@@ -66,6 +66,25 @@
         return 'img/banda.jpg';
     }
 
+
+    function productImage(product) {
+        if (product && product.imagen_url) {
+            return product.imagen_url;
+        }
+        return 'img/logo.png';
+    }
+
+    function formatProductCategory(value) {
+        var categories = {
+            ropa: 'Ropa',
+            accesorios: 'Accesorios',
+            instrumentos: 'Instrumentos',
+            musica: 'Vinilos / CDs',
+            merch: 'Merchandising'
+        };
+        return categories[value] || value || '';
+    }
+
     function setText(id, value) {
         var element = document.getElementById(id);
         if (element) {
@@ -81,6 +100,8 @@
         formatDate: formatDate,
         formatPrice: formatPrice,
         eventImage: eventImage,
+        productImage: productImage,
+        formatProductCategory: formatProductCategory,
         setText: setText
     };
 }());

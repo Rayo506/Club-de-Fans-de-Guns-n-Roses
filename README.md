@@ -21,6 +21,9 @@ login.html
 eventos.html
 crear-evento.html
 detalles-evento.html
+marketplace.html
+detalle-producto.html
+subir-producto.html
 mod.html
 ```
 
@@ -34,6 +37,9 @@ mod.html
 - La lista pública muestra solo eventos `aprobado`.
 - La consola `mod.html` exige login con rol `moderador` o `admin`.
 - El moderador puede aceptar o rechazar eventos pendientes.
+- Los usuarios pueden apuntarse y desapuntarse de eventos aprobados.
+- Marketplace conectado a la API con listado, detalle y subida de productos.
+- Carrito básico en navegador con añadir, eliminar y botón de compra no funcional.
 
 ## Base de datos PostgreSQL
 
@@ -112,6 +118,10 @@ GET  /api/events
 GET  /api/events/<id>
 POST /api/events
 POST /api/events/<id>/registrations
+DELETE /api/events/<id>/registrations
+GET  /api/products
+GET  /api/products/<id>
+POST /api/products
 GET  /api/mod/dashboard
 GET  /api/mod/events
 PATCH /api/mod/events/<id>

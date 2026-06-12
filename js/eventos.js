@@ -52,13 +52,14 @@ document.addEventListener('DOMContentLoaded', function () {
         var joinButton = document.createElement('a');
         joinButton.href = '#';
         joinButton.className = 'btn-evento-link btn-apuntar';
-        joinButton.textContent = 'Apuntarse';
+        joinButton.textContent = event.registrado ? 'Desapuntarse' : 'Apuntarse';
         joinButton.addEventListener('click', function (clickEvent) {
             clickEvent.preventDefault();
+            var method = event.registrado ? 'DELETE' : 'POST';
             GNR_API.request('/events/' + event.id + '/registrations', {
-                method: 'POST'
+                method: method
             }).then(function () {
-                setMessage('Te has apuntado al evento', false);
+                setMessage(event.registrado ? 'Te has desapuntado del evento' : 'Te has apuntado al evento', false);
                 loadEvents();
             }).catch(function (error) {
                 setMessage(error.message, true);

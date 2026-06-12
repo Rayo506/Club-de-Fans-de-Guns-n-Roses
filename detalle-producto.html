@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/detalle-producto.css">
     <link rel="icon" type="image/png" href="img/logo.png">
-    <title>Club de Fans de Guns n' Roses</title>
+    <title>Detalle de producto - Club de Fans de Guns n' Roses</title>
 </head>
 
 <body>
@@ -29,34 +29,31 @@
 
     <main>
         <section class="detalle-producto-contenedor">
-
             <article class="tarjeta-detalle-producto">
                 <h1 id="producto-titulo">Nombre del producto</h1>
 
                 <div class="producto-img-detalle">
-                    <img src="img/producto-placeholder.jpg" alt="Imagen del producto" id="producto-imagen">
+                    <img src="img/logo.png" alt="Imagen del producto" id="producto-imagen">
                 </div>
 
                 <div class="producto-info-bloque">
-                    <p><strong>Vendedor / Creado por:</strong> <span id="producto-vendedor">Nombre del usuario</span>
-                    </p>
-                    <p><strong>Precio:</strong> <span id="producto-precio">0.00€</span></p>
-                    <p><strong>Tipo de objeto:</strong> <span id="producto-categoria">Ropa / Accesorio / Música</span>
-                    </p>
-                    <p><strong>Estado:</strong> <span id="producto-estado">Nuevo / Segunda mano</span></p>
+                    <p><strong>Vendedor / Creado por:</strong> <span id="producto-vendedor">Usuario</span></p>
+                    <p><strong>Precio:</strong> <span id="producto-precio">0.00 euros</span></p>
+                    <p><strong>Tipo de objeto:</strong> <span id="producto-categoria">Categoría</span></p>
+                    <p><strong>Estado:</strong> <span id="producto-estado">Estado</span></p>
                 </div>
 
                 <div class="producto-descripcion-bloque">
                     <h2>Descripción del producto</h2>
-                    <p id="producto-descripcion">Aquí se inyectará dinámicamente desde JavaScript la descripción
-                        detallada del artículo que el vendedor haya escrito.</p>
+                    <p id="producto-descripcion">Descripción del producto.</p>
                 </div>
             </article>
 
+            <p id="detalle-producto-mensaje" class="mensaje-eventos"></p>
+
             <div class="carrito-button-contenedor-detalle">
-                <button type="button" class="btn-añadir-carrito" id="btn-back"onclick="history.back()">Atrás</button>
-                <button type="button" class="btn-añadir-carrito" id="btn-agregar-carrito-detalle">Añadir
-                    carrito</button>
+                <button type="button" class="btn-añadir-carrito" id="btn-back" onclick="history.back()">Atrás</button>
+                <button type="button" class="btn-añadir-carrito" id="btn-agregar-carrito-detalle">Añadir carrito</button>
             </div>
         </section>
     </main>
@@ -65,16 +62,8 @@
         <p>&copy; 2026 Club de Fans de Guns n' Roses. Todos los derechos reservados.</p>
         <p>Desarrollado con pasión por el Equipo GRUPO8.</p>
     </footer>
+    <script src="js/api.js"></script>
+    <script src="js/detalle-producto.js"></script>
 </body>
 
 </html>
-
-<!--
-Ejemplo para el JS, primero sustituimos el que ya existe o direcamente lo comentamos para que crea de cero:
-document.getElementById('producto-titulo').textContent = "Camiseta 2006";
-document.getElementById('producto-imagen').textContent = "img/producot.png";
-document.getElementById('producto-vendedor').textContent = "AdminGrupo8";
-document.getElementById('producto-precio').textContent = "45€"; //
-document.getElementById('producto-categoria').textContent = "Ropa";
-document.getElementById('producto-estado').src = "Nueva";
--->

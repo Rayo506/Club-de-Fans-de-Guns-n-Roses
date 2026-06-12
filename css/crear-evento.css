@@ -70,3 +70,13 @@
 .btn-enviar-evento:hover {
     background-color: #004499;
 }
+
+.campo-evento select {
+    width: 100%;
+    border: 1px solid #b3d7ff;
+    border-radius: 4px;
+    padding: 9px 10px;
+    font-size: 14px;
+    box-sizing: border-box;
+    background-color: #ffffff;
+}

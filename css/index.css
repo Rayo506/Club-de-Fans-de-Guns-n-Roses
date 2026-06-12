@@ -1,3 +1,4 @@
+/* HERO: IMAGEN DE LA BANDA CENTRADA */
 .hero-banda {
     text-align: center;
     margin-bottom: 30px;
@@ -13,11 +14,13 @@
     border: 1px solid #cccccc;
 }
 
+/* BLOQUE DE DOS COLUMNAS (HISTORIA Y NOTICIAS) */
 .contenedor-dos-columnas {
     width: 100%;
     margin-bottom: 40px;
 }
 
+/* Columna Izquierda: Historia */
 .caja-historia {
     float: left;
     width: 58%;
@@ -33,6 +36,7 @@
     margin-bottom: 15px;
 }
 
+/* Columna Derecha: Últimas Noticias */
 .caja-noticias {
     float: right;
     width: 38%;
@@ -57,6 +61,7 @@
     margin-bottom: 50px;
 }
 
+/* El botón ahora fluye de manera natural según el contenido */
 .caja-historia .btn-accion {
     position: relative;
     margin-top: 15px;
@@ -64,6 +69,7 @@
     left: auto;
 }
 
+/* Estilos para las listas de la historia (para que queden ordenadas al desplegarse) */
 .caja-historia h3 {
     font-size: 16px;
     margin-top: 15px;
@@ -96,6 +102,7 @@
     background-color: #f0f0f0;
 }
 
+/* BLOQUE INFERIOR: ÚLTIMOS EVENTOS (3 TARJETAS) */
 .seccion-eventos {
     width: 100%;
     margin-top: 20px;
@@ -113,25 +120,28 @@
     width: 100%;
 }
 
+/* Cada una de las 3 tarjetas en horizontal */
 .tarjeta-evento {
     float: left;
     width: 32%;
-    margin-right: 2%;
+    margin-right: 2%; /* Separación entre tarjetas */
     border: 1px solid #333333;
     padding: 10px;
     background-color: #ffffff;
     box-sizing: border-box;
 }
 
+/* Quita el margen derecho a la última tarjeta para que no salte de línea */
 .tarjeta-evento:last-child {
     margin-right: 0;
 }
 
+/* El cuadrado de la izquierda dentro de cada tarjeta (Imagen/X del boceto) */
 .evento-img-placeholder {
     float: left;
     width: 35%;
     border: 1px solid #cccccc;
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 1 / 1; /* Lo mantiene perfectamente cuadrado */
     overflow: hidden;
 }
 
@@ -141,6 +151,7 @@
     object-fit: cover;
 }
 
+/* Bloque de información a la derecha de la miniatura */
 .evento-info {
     float: right;
     width: 60%;
@@ -159,6 +170,7 @@
     margin-bottom: 12px;
 }
 
+/* Botón "Ver evento" */
 .btn-evento {
     display: inline-block;
     border: 1px solid #333333;

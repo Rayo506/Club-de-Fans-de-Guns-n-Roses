@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/marketplace.css">
     <link rel="icon" type="image/png" href="img/logo.png">
-    <title>Club de Fans de Guns n' Roses</title>
+    <title>Marketplace - Club de Fans de Guns n' Roses</title>
 </head>
 
 <body>
@@ -29,13 +29,9 @@
 
     <main>
         <section class="cabecera-marketplace">
-
             <div class="fila-titulo">
                 <h1 class="titulo-pagina">Marketplace</h1>
-                <button class="btn-carrito">
-                    <img src="img/carrito.png" alt="iconocarrito" class="icono-btn">
-                    Carrito <!-- que aparezca la cantidad en el carrito (X)-->
-                </button>
+                <button type="button" class="btn-carrito" id="btn-ver-carrito">Carrito (<span id="carrito-contador">0</span>)</button>
                 <div style="clear: both;"></div>
             </div>
 
@@ -59,29 +55,17 @@
             </div>
         </section>
 
+        <section class="carrito-panel" id="carrito-panel">
+            <h2>Carrito</h2>
+            <div id="carrito-lista" class="carrito-lista"></div>
+            <button type="button" id="btn-comprar-carrito" class="btn-comprar-carrito">Comprar</button>
+            <p id="carrito-mensaje" class="mensaje-form"></p>
+        </section>
+
+        <p id="productos-mensaje" class="mensaje-eventos"></p>
+
         <section class="listado-productos">
-            <div id="productos-contenedor-js">
-
-                <article class="tarjeta-producto">
-                    <div class="producto-img-contenedor">
-                        <img src="img/producto-placeholder.jpg" alt="Producto">
-                    </div>
-                    
-                    <div class="producto-detalles">
-                        <h3 class="producto-nombre">Camiseta Appetite for Destruction</h3>
-                        <div class="producto-meta">
-                            <span class="producto-precio">25.00€</span>
-                            <a href="detalle-producto.html" class="link-ver-producto">Ver</a>
-                        </div>
-                    </div>
-
-                    <div class="carrito-button-contenedor">
-                        <button type="button" class="btn-añadir-carrito">Añadir carrito</button>
-                    </div>
-                </article>
-
-                <div style="clear: both;"></div>
-            </div>
+            <div id="productos-contenedor-js"></div>
         </section>
 
         <section class="seccion-subir-producto">
@@ -93,6 +77,8 @@
         <p>&copy; 2026 Club de Fans de Guns n' Roses. Todos los derechos reservados.</p>
         <p>Desarrollado con pasión por el Equipo GRUPO8.</p>
     </footer>
+    <script src="js/api.js"></script>
+    <script src="js/productos.js"></script>
 </body>
 
 </html>

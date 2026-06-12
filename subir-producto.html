@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/eventos.css">
+    <link rel="stylesheet" href="css/crear-evento.css">
+    <link rel="stylesheet" href="css/marketplace.css">
+    <link rel="icon" type="image/png" href="img/logo.png">
+    <title>Subir producto - Club de Fans de Guns n' Roses</title>
+</head>
+
+<body>
+    <nav class="nav-global">
+        <div class="nav-izquierda">
+            <img src="img/logo.png" alt="Logo Guns N' Roses" class="nav-logo">
+            <h1 class="nav-titulo">Club de Fans de Guns n' Roses</h1>
+        </div>
+        <div class="nav-derecha">
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html">Inicio</a></li>
+                <li class="nav-item"><a href="marketplace.html">Marketplace</a></li>
+                <li class="nav-item"><a href="eventos.html">Evento</a></li>
+                <li class="nav-item"><a href="login.html">Login</a></li>
+            </ul>
+        </div>
+        <div style="clear: both;"></div>
+    </nav>
+
+    <main>
+        <section class="cabecera-eventos">
+            <div class="fila-titulo">
+                <h1 class="titulo-pagina">Subir producto</h1>
+                <a class="btn-crear-evento" href="marketplace.html">Volver al marketplace</a>
+                <div style="clear: both;"></div>
+            </div>
+            <p class="texto-ayuda-evento">El producto se publicará directamente en el marketplace.</p>
+        </section>
+
+        <section class="formulario-evento-contenedor">
+            <form id="form-subir-producto" class="formulario-evento" action="#" method="POST">
+                <p><strong>Vendedor:</strong> <span id="subir-producto-vendedor">Usuario autenticado</span></p>
+
+                <div class="campo-evento">
+                    <label for="producto-nombre-input">Nombre del producto</label>
+                    <input type="text" id="producto-nombre-input" name="nombre" required minlength="3" maxlength="160">
+                </div>
+
+                <div class="campo-evento campo-mitad">
+                    <label for="producto-precio-input">Precio</label>
+                    <input type="number" id="producto-precio-input" name="precio" min="0" step="0.01" required placeholder="0.00">
+                </div>
+
+                <div class="campo-evento campo-mitad campo-mitad-derecha">
+                    <label for="producto-categoria-input">Tipo de objeto</label>
+                    <select id="producto-categoria-input" name="categoria" required>
+                        <option value="ropa">Ropa</option>
+                        <option value="accesorios">Accesorios</option>
+                        <option value="instrumentos">Instrumentos</option>
+                        <option value="musica">Vinilos / CDs</option>
+                        <option value="merch">Merchandising</option>
+                    </select>
+                </div>
+                <div style="clear: both;"></div>
+
+                <div class="campo-evento">
+                    <label for="producto-estado-input">Estado</label>
+                    <input type="text" id="producto-estado-input" name="estado" required maxlength="80" placeholder="Nuevo, usado, segunda mano">
+                </div>
+
+                <div class="campo-evento">
+                    <label for="producto-imagen-input">URL de imagen</label>
+                    <input type="url" id="producto-imagen-input" name="imagen_url" placeholder="https://ejemplo.com/producto.jpg">
+                </div>
+
+                <div class="campo-evento">
+                    <label for="producto-descripcion-input">Descripción del producto</label>
+                    <textarea id="producto-descripcion-input" name="descripcion" rows="8" required minlength="10"></textarea>
+                </div>
+
+                <button type="submit" class="btn-enviar-evento">Publicar producto</button>
+                <p id="subir-producto-mensaje" class="mensaje-form"></p>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Club de Fans de Guns n' Roses. Todos los derechos reservados.</p>
+        <p>Desarrollado con pasión por el Equipo GRUPO8.</p>
+    </footer>
+    <script src="js/api.js"></script>
+    <script src="js/subir-producto.js"></script>
+</body>
+
+</html>

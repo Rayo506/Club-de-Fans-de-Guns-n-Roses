@@ -1,3 +1,4 @@
+/* CABECERA: TÍTULO Y BOTÓN "CARRITO" */
 .cabecera-marketplace {
     width: 100%;
     margin-bottom: 30px;
@@ -15,6 +16,7 @@
     color: #1a1a1a;
 }
 
+/* Botón Carrito superior derecho con su contador */
 .btn-carrito {
     float: right;
     background-color: #d9d9d9;
@@ -39,6 +41,7 @@
     margin-right: 8px;
 }
 
+/* BARRA DE FILTROS (BUSCADOR Y SELECTOR DE TIPO) */
 .barra-filtros {
     width: 100%;
     margin-bottom: 35px;
@@ -92,17 +95,23 @@
     margin-bottom: 40px;
 }
 
+/* Tarjeta contenedora: Cambiado el marco gris por el azul suave corporativo */
 .tarjeta-producto {
     float: left;
     width: 22%;
+    /* Deja espacio suficiente para márgenes intermedios */
     margin-right: 4%;
+    /* Separación entre columnas */
     margin-bottom: 30px;
+    /* Separación entre filas */
     background-color: #e6f2ff;
     padding: 12px;
     box-sizing: border-box;
     text-align: center;
     border: 1px solid #cce3ff;
+    /* Borde azulado sutil */
     border-radius: 6px;
+    /* Bordes ligeramente redondeados para que quede más moderno */
 }
 
 /* Quita el margen derecho al 4º producto de cada fila para evitar saltos */
@@ -176,6 +185,7 @@
     border-bottom-right-radius: 4px;
 }
 
+/* Botón "Añadir carrito" rectangular y adaptado al estilo */
 .btn-añadir-carrito {
     width: 100%;
     background-color: #ffffff;
@@ -192,14 +202,17 @@
 .btn-añadir-carrito:hover {
     background-color: #0066cc;
     color: #ffffff;
+    /* Se invierten los colores al pasar el cursor */
 }
 
+/* SECCIÓN INFERIOR: BOTÓN CENTRADO "SUBIR PRODUCTO" */
 .seccion-subir-producto {
     width: 100%;
     text-align: center;
     margin-top: 20px;
     margin-bottom: 40px;
     clear: both;
+    /* Asegura que se sitúe debajo de todas las filas de productos */
 }
 
 .btn-subir-producto {
@@ -217,4 +230,95 @@
 
 .btn-subir-producto:hover {
     background-color: #cccccc;
+}
+.carrito-panel {
+    display: none;
+    background-color: #e6f2ff;
+    border: 1px solid #cce3ff;
+    border-radius: 6px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.carrito-panel h2 {
+    color: #004499;
+    margin-bottom: 15px;
+}
+
+.carrito-lista {
+    background-color: #ffffff;
+    border: 1px solid #b3d7ff;
+    border-radius: 4px;
+    padding: 12px;
+    margin-bottom: 15px;
+}
+
+.carrito-fila {
+    border-bottom: 1px solid #d9eaff;
+    padding: 10px 0;
+}
+
+.carrito-fila:last-child {
+    border-bottom: none;
+}
+
+.carrito-fila span {
+    display: inline-block;
+    width: 70%;
+    vertical-align: middle;
+}
+
+.btn-eliminar-carrito {
+    float: right;
+    background-color: #ffffff;
+    color: #b00020;
+    border: 1px solid #b00020;
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.btn-eliminar-carrito:hover {
+    background-color: #b00020;
+    color: #ffffff;
+}
+
+.btn-comprar-carrito {
+    background-color: #0066cc;
+    color: #ffffff;
+    border: none;
+    padding: 9px 24px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.btn-comprar-carrito:hover {
+    background-color: #004499;
+}
+
+.producto-categoria {
+    clear: both;
+    font-size: 12px;
+    color: #333333;
+    margin-top: 10px;
+}
+
+.mensaje-eventos,
+.mensaje-form {
+    clear: both;
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.mensaje-ok {
+    color: #006600;
+}
+
+.mensaje-error {
+    color: #b00020;
 }
