@@ -142,3 +142,23 @@
     font-size: 13px;
     color: #555555;
 }
+.mensaje-form {
+    min-height: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.mensaje-ok {
+    color: #155724;
+}
+
+.mensaje-error {
+    color: #cc0000;
+}
+
+.tarjeta-rol a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}

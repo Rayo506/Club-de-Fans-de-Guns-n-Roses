@@ -30,37 +30,38 @@
     <main class="contenedor-moderacion">
         <aside class="sidebar-moderador">
             <div class="bloque-bienvenida">
-                <h3>Bienvenido<br>Moderador</h3>
+                <h3 id="moderador-bienvenida">Bienvenido<br>Moderador</h3>
             </div>
             <nav class="menu-moderador">
-                <a href="#" class="item-menu active">Panel de control</a> 
-                <a href="#" class="item-menu">Productos</a> 
-                <a href="#" class="item-menu">Eventos</a> 
-                <a href="#" class="item-menu">Contenido reportado</a> 
+                <a href="#" class="item-menu active">Panel de control</a>
+                <a href="#" class="item-menu">Productos</a>
+                <a href="#" class="item-menu">Eventos</a>
+                <a href="#" class="item-menu">Contenido reportado</a>
                 <a href="#" class="item-menu">Usuarios</a>
                 <a href="#" class="item-menu">Ajustes</a>
-                <a href="logout" class="item-menu btn-cerrar-sesion">🔀 Cerrar sesión</a>
+                <a href="#" class="item-menu btn-cerrar-sesion" id="btn-mod-logout">Cerrar sesión</a>
             </nav>
         </aside>
 
         <section class="contenido-moderacion">
             <h2 class="titulo-seccion">Panel de control</h2>
-            
+            <p id="mod-mensaje" class="mensaje-mod"></p>
+
             <div class="bloques-contador-container">
                 <div class="tarjeta-contador">
-                    <span class="numero-contador" id="cnt-productos">10</span>
+                    <span class="numero-contador" id="cnt-productos">0</span>
                     <p class="txt-contador">Productos pendientes</p>
                 </div>
                 <div class="tarjeta-contador">
-                    <span class="numero-contador" id="cnt-eventos">5</span>
+                    <span class="numero-contador" id="cnt-eventos">0</span>
                     <p class="txt-contador">Eventos pendientes</p>
                 </div>
                 <div class="tarjeta-contador">
-                    <span class="numero-contador" id="cnt-reportes">3</span>
+                    <span class="numero-contador" id="cnt-reportes">0</span>
                     <p class="txt-contador">Reportes pendientes</p>
                 </div>
                 <div class="tarjeta-contador">
-                    <span class="numero-contador" id="cnt-usuarios">120</span>
+                    <span class="numero-contador" id="cnt-usuarios">0</span>
                     <p class="txt-contador">Usuarios registrados</p>
                 </div>
                 <div style="clear: both;"></div>
@@ -80,14 +81,7 @@
                     </thead>
                     <tbody id="tabla-productos-body">
                         <tr>
-                            <td>Nombre_productoX</td>
-                            <td>Usuario123</td>
-                            <td>10/05/2026</td>
-                            <td><span class="estado-pendiente">Pendiente</span></td>
-                            <td>
-                                <button class="btn-accion-mod btn-validar" title="Aprobar">Aceptar</button>
-                                <button class="btn-accion-mod btn-rechazar" title="Rechazar">X</button>
-                            </td>
+                            <td colspan="5">Cargando...</td>
                         </tr>
                     </tbody>
                 </table>
@@ -107,14 +101,7 @@
                     </thead>
                     <tbody id="tabla-eventos-body">
                         <tr>
-                            <td>Evento_123</td>
-                            <td>Usuario233</td>
-                            <td>16/06/2026</td>
-                            <td><span class="estado-pendiente">Pendiente</span></td>
-                            <td>
-                                <button class="btn-accion-mod btn-validar">Aceptar</button>
-                                <button class="btn-accion-mod btn-rechazar">X</button>
-                            </td>
+                            <td colspan="5">Cargando...</td>
                         </tr>
                     </tbody>
                 </table>
@@ -134,16 +121,11 @@
                     </thead>
                     <tbody id="tabla-reportes-body">
                         <tr>
-                            <td>Contenido</td>
-                            <td>Reportado por Acciones</td>
-                            <td>Producto</td>
-                            <td>ProductoX Inpropiado</td>
-                            <td>Usuario165</td>
+                            <td colspan="5">Cargando...</td>
                         </tr>
                     </tbody>
                 </table>
             </article>
-
         </section>
         <div style="clear: both;"></div>
     </main>
@@ -152,6 +134,8 @@
         <p>&copy; 2026 Club de Fans de Guns n' Roses. Todos los derechos reservados.</p>
         <p>Desarrollado con pasión por el Equipo GRUPO8.</p>
     </footer>
+    <script src="js/api.js"></script>
+    <script src="js/mod.js"></script>
 </body>
 
 </html>

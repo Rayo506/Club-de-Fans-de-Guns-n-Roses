@@ -29,83 +29,82 @@
 
     <main>
         <section class="contenedor-formularios">
-            
             <div class="columna-login">
-                <h2>Iniciar Sesión</h2>
-                <form action="#" method="POST" class="formulario">
+                <h2>Iniciar sesión</h2>
+                <form action="#" method="POST" class="formulario" id="form-login">
                     <div class="campo-form">
                         <label for="login-email">Email</label>
                         <input type="email" id="login-email" name="email" required>
                     </div>
-                    
+
                     <div class="campo-form">
                         <label for="login-password">Contraseña</label>
                         <input type="password" id="login-password" name="password" required>
                     </div>
-                    
+
                     <button type="submit" class="btn-form">Entrar</button>
-                    <a href="#" class="link-olvido">¿Olvidaste tu contraseña?</a>
+                    <p id="login-mensaje" class="mensaje-form"></p>
                 </form>
             </div>
 
             <div class="columna-registro">
                 <h2>Registro</h2>
-                <form action="#" method="POST" class="formulario">
+                <form action="#" method="POST" class="formulario" id="form-registro">
                     <div class="campo-form">
                         <label for="reg-nombre">Nombre</label>
-                        <input type="text" id="reg-nombre" name="nombre" required>
+                        <input type="text" id="reg-nombre" name="nombre" required minlength="2">
                     </div>
 
                     <div class="campo-form">
                         <label for="reg-email">Email</label>
                         <input type="email" id="reg-email" name="email" required>
                     </div>
-                    
+
                     <div class="campo-form">
                         <label for="reg-password">Contraseña</label>
-                        <input type="password" id="reg-password" name="password" required>
+                        <input type="password" id="reg-password" name="password" required minlength="8">
                     </div>
-                    
+
                     <button type="submit" class="btn-form">Registrarse</button>
+                    <p id="registro-mensaje" class="mensaje-form"></p>
                 </form>
             </div>
-            
+
             <div style="clear: both;"></div>
         </section>
 
         <section class="seccion-roles">
             <h1 class="titulo-roles">Roles de usuario</h1>
-            
+
             <div class="contenedor-tarjetas-roles">
                 <div class="rol_user tarjeta-rol">
                     <div class="rol-img-placeholder">
                         <img src="img/fan.png" alt="Icono Fan">
                     </div>
-                    <p class="rol-nombre">FAN usuario</p>
-                    <p class="rol-desc">Roles de usuario</p>
+                    <p class="rol-nombre">Fan usuario</p>
+                    <p class="rol-desc">Puede crear eventos y apuntarse</p>
                 </div>
 
-                <!--Si tiene acceso el usuario entonces estara habilitado el click si no no-->
-                <div class="rol_moderator tarjeta-rol"> 
-                    <a href="/mod.html">
-                    <div class="rol-img-placeholder">
-                        <img src="img/mod.png" alt="Icono Moderador">
-                    </div>
-                    <p class="rol-nombre">MODERADOR</p>
-                    <p class="rol-desc">Editor de contenido</p>
+                <div class="rol_moderator tarjeta-rol">
+                    <a href="mod.html" id="rol-moderador-link">
+                        <div class="rol-img-placeholder">
+                            <img src="img/mod.png" alt="Icono Moderador">
+                        </div>
+                        <p class="rol-nombre">Moderador</p>
+                        <p class="rol-desc">Valida eventos pendientes</p>
                     </a>
                 </div>
 
                 <div class="rol_admin tarjeta-rol">
-                    <a href="/mod.html">
-                    <div class="rol-img-placeholder">
-                        <img src="img/admin.png" alt="Icono Administrador">
-                    </div>
-                    <p class="rol-nombre">ADMINISTRADOR</p>
-                    <p class="rol-desc">Control total</p>
+                    <a href="mod.html" id="rol-admin-link">
+                        <div class="rol-img-placeholder">
+                            <img src="img/admin.png" alt="Icono Administrador">
+                        </div>
+                        <p class="rol-nombre">Administrador</p>
+                        <p class="rol-desc">Control total</p>
                     </a>
                 </div>
-                
+
                 <div style="clear: both;"></div>
             </div>
         </section>
@@ -115,6 +114,8 @@
         <p>&copy; 2026 Club de Fans de Guns n' Roses. Todos los derechos reservados.</p>
         <p>Desarrollado con pasión por el Equipo GRUPO8.</p>
     </footer>
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
 </body>
 
 </html>

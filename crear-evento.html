@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/eventos.css">
+    <link rel="stylesheet" href="css/crear-evento.css">
+    <link rel="icon" type="image/png" href="img/logo.png">
+    <title>Crear evento - Club de Fans de Guns n' Roses</title>
+</head>
+
+<body>
+    <nav class="nav-global">
+        <div class="nav-izquierda">
+            <img src="img/logo.png" alt="Logo Guns N' Roses" class="nav-logo">
+            <h1 class="nav-titulo">Club de Fans de Guns n' Roses</h1>
+        </div>
+        <div class="nav-derecha">
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html">Inicio</a></li>
+                <li class="nav-item"><a href="marketplace.html">Marketplace</a></li>
+                <li class="nav-item"><a href="eventos.html">Evento</a></li>
+                <li class="nav-item"><a href="login.html">Login</a></li>
+            </ul>
+        </div>
+        <div style="clear: both;"></div>
+    </nav>
+
+    <main>
+        <section class="cabecera-eventos">
+            <div class="fila-titulo">
+                <h1 class="titulo-pagina">Crear evento</h1>
+                <a class="btn-crear-evento" href="eventos.html">Volver a eventos</a>
+                <div style="clear: both;"></div>
+            </div>
+            <p class="texto-ayuda-evento">El evento quedará pendiente hasta que un moderador lo valide en la consola.</p>
+        </section>
+
+        <section class="formulario-evento-contenedor">
+            <form id="form-crear-evento" class="formulario-evento" action="#" method="POST">
+                <p><strong>Creado por:</strong> <span id="crear-evento-creador">Usuario autenticado</span></p>
+
+                <div class="campo-evento">
+                    <label for="evento-titulo-input">Título del evento</label>
+                    <input type="text" id="evento-titulo-input" name="titulo" required minlength="3" maxlength="160">
+                </div>
+
+                <div class="campo-evento campo-mitad">
+                    <label for="evento-fecha-input">Fecha</label>
+                    <input type="date" id="evento-fecha-input" name="fecha" required>
+                </div>
+
+                <div class="campo-evento campo-mitad campo-mitad-derecha">
+                    <label for="evento-hora-input">Hora</label>
+                    <input type="time" id="evento-hora-input" name="hora" required>
+                </div>
+                <div style="clear: both;"></div>
+
+                <div class="campo-evento">
+                    <label for="evento-localizacion-input">Localización</label>
+                    <input type="text" id="evento-localizacion-input" name="localizacion" required maxlength="160" placeholder="Ciudad / Recinto">
+                </div>
+
+                <div class="campo-evento campo-mitad">
+                    <label for="evento-precio-input">Precio</label>
+                    <input type="number" id="evento-precio-input" name="precio" min="0" step="0.01" placeholder="0.00">
+                </div>
+
+                <div class="campo-evento campo-mitad campo-mitad-derecha">
+                    <label for="evento-plazas-input">Plazas totales</label>
+                    <input type="number" id="evento-plazas-input" name="plazas_totales" min="1" step="1" required>
+                </div>
+                <div style="clear: both;"></div>
+
+                <div class="campo-evento">
+                    <label for="evento-imagen-input">URL de imagen</label>
+                    <input type="url" id="evento-imagen-input" name="imagen_url" placeholder="https://ejemplo.com/imagen.jpg">
+                </div>
+
+                <div class="campo-evento">
+                    <label for="evento-descripcion-input">Descripción del evento</label>
+                    <textarea id="evento-descripcion-input" name="descripcion" rows="8" required minlength="10"></textarea>
+                </div>
+
+                <button type="submit" class="btn-enviar-evento">Enviar a moderación</button>
+                <p id="crear-evento-mensaje" class="mensaje-form"></p>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Club de Fans de Guns n' Roses. Todos los derechos reservados.</p>
+        <p>Desarrollado con pasión por el Equipo GRUPO8.</p>
+    </footer>
+    <script src="js/api.js"></script>
+    <script src="js/crear-evento.js"></script>
+</body>
+
+</html>

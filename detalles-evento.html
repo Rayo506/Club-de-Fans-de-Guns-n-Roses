@@ -29,43 +29,34 @@
 
     <main>
         <section class="detalle-evento-contenedor">
+            <p id="detalle-evento-mensaje" class="mensaje-eventos"></p>
 
             <article class="tarjeta-detalle-evento">
                 <h1 id="evento-titulo">Título del evento</h1>
 
                 <div class="evento-img-detalle">
-                    <img src="img/evento-placeholder.jpg" alt="Imagen del evento" id="evento-imagen">
+                    <img src="img/banda.jpg" alt="Imagen del evento" id="evento-imagen">
                 </div>
 
                 <div class="evento-info-bloque">
                     <p><strong>Creado por:</strong> <span id="evento-creador">Nombre del organizador</span></p>
-
                     <p><strong>Fecha:</strong> <span id="evento-fecha">dd/mm/aaaa</span></p>
-
                     <p><strong>Hora:</strong> <span id="evento-hora">00:00</span></p>
-
                     <p><strong>Localización:</strong> <span id="evento-localizacion">Ciudad / Recinto</span></p>
-
-                    <p><strong>Precio:</strong> <span id="evento-precio">Gratis / XX.XX€</span></p>
-
-                    <p><strong>Plazas disponibles:</strong> <span id="evento-plazas-actuales">0</span> / <span
-                            id="evento-plazas-totales">0</span></p>
+                    <p><strong>Precio:</strong> <span id="evento-precio">Gratis</span></p>
+                    <p><strong>Plazas disponibles:</strong> <span id="evento-plazas-actuales">0</span> / <span id="evento-plazas-totales">0</span></p>
                 </div>
 
                 <div class="evento-descripcion-bloque">
                     <h2>Descripción del evento</h2>
-                    <p id="evento-descripcion">Aquí se inyectará todo el texto extendido correspondiente a la
-                        información detallada del evento dinámicamente desde el JSON o Backend.</p>
+                    <p id="evento-descripcion">Información detallada del evento.</p>
                 </div>
             </article>
 
             <div class="evento-detalle-acciones">
-                <button type="button" class="btn-detalle-evento btn-detalle-atras" id="btn-back"
-                    onclick="history.back()">Atrás</button>
-                <button type="button" class="btn-detalle-evento btn-detalle-apuntar"
-                    id="btn-apuntar-evento">Apuntarse</button>
+                <button type="button" class="btn-detalle-evento btn-detalle-atras" id="btn-back" onclick="history.back()">Atrás</button>
+                <button type="button" class="btn-detalle-evento btn-detalle-apuntar" id="btn-apuntar-evento">Apuntarse</button>
             </div>
-
         </section>
     </main>
 
@@ -73,21 +64,8 @@
         <p>&copy; 2026 Club de Fans de Guns n' Roses. Todos los derechos reservados.</p>
         <p>Desarrollado con pasión por el Equipo GRUPO8.</p>
     </footer>
+    <script src="js/api.js"></script>
+    <script src="js/detalle-evento.js"></script>
 </body>
 
 </html>
-
-<!--
-Para hacer accion hacia atras
-const btnAtras = document.getElementById('btn-back');
-btnAtras.addEventListener('click', function(event) {
-    event.preventDefault();
-    window.history.back();
-});
-
-Ejemplo para el JS, primero sustituimos el que ya existe o direcamente lo comentamos para que crea de cero:
-document.getElementById('evento-titulo').textContent = "Concierto Tributo en Madrid";
-document.getElementById('evento-fecha').textContent = "22/02/2026"; //
-document.getElementById('evento-creador').textContent = "AdminGrupo8";
-document.getElementById('evento-imagen').src = "img/concierto.jpg";
--->

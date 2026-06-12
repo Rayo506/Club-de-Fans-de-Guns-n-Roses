@@ -1,0 +1,72 @@
+.texto-ayuda-evento {
+    clear: both;
+    color: #444444;
+    font-size: 15px;
+    margin-top: 8px;
+}
+
+.formulario-evento-contenedor {
+    background-color: #e6f2ff;
+    border: 1px solid #cce3ff;
+    border-radius: 6px;
+    padding: 30px;
+}
+
+.formulario-evento {
+    background-color: #ffffff;
+    border: 1px solid #b3d7ff;
+    border-radius: 6px;
+    padding: 25px;
+}
+
+.campo-evento {
+    margin-top: 18px;
+}
+
+.campo-evento label {
+    display: block;
+    font-weight: bold;
+    color: #004499;
+    margin-bottom: 8px;
+}
+
+.campo-evento input,
+.campo-evento textarea {
+    width: 100%;
+    border: 1px solid #b3d7ff;
+    border-radius: 4px;
+    padding: 9px 10px;
+    font-size: 14px;
+    box-sizing: border-box;
+    background-color: #ffffff;
+}
+
+.campo-evento textarea {
+    resize: vertical;
+}
+
+.campo-mitad {
+    float: left;
+    width: 48%;
+}
+
+.campo-mitad-derecha {
+    float: right;
+}
+
+.btn-enviar-evento {
+    display: inline-block;
+    background-color: #0066cc;
+    color: #ffffff;
+    border: none;
+    padding: 10px 24px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 25px;
+    border-radius: 4px;
+}
+
+.btn-enviar-evento:hover {
+    background-color: #004499;
+}
