@@ -4,7 +4,7 @@ from decimal import Decimal, InvalidOperation
 from flask import Blueprint, jsonify, request
 
 from backend.repositories import event_repo
-from backend.routes.helpers import event_to_dict, json_error, require_user
+from backend.routes.helpers import current_user, event_to_dict, json_error, require_user
 
 
 event_bp = Blueprint('events', __name__)
@@ -81,7 +81,11 @@ def list_public_events():
         except ValueError:
             return json_error('La fecha debe usar el formato YYYY-MM-DD', 400)
     events = event_repo.list_events(estado='aprobado', search=search, fecha=fecha, lugar=lugar)
-    return jsonify({'events': [event_to_dict(event) for event in events]})
+    user = current_user()
+    registered = set()
+    if user:
+        registered = event_repo.registered_event_ids(user.id, [event.id for event in events])
+    return jsonify({'events': [event_to_dict(event, event.id in registered) for event in events]})
 
 
 @event_bp.route('/events/<int:event_id>', methods=['GET'])
@@ -89,11 +93,12 @@ def get_public_event(event_id: int):
     event = event_repo.get_event(event_id)
     if not event:
         return json_error('Evento no encontrado', 404)
+    user = current_user()
     if event.estado != 'aprobado':
-        user, error = require_user()
-        if error or user.role not in ('moderador', 'admin'):
+        if not user or user.role not in ('moderador', 'admin'):
             return json_error('Evento no disponible', 404)
-    return jsonify({'event': event_to_dict(event)})
+    registrado = event_repo.is_user_registered(event.id, user.id) if user else False
+    return jsonify({'event': event_to_dict(event, registrado)})
 
 
 @event_bp.route('/events', methods=['POST'])
@@ -123,4 +128,18 @@ def join_event(event_id: int):
         return json_error(str(exc), 404)
     except ValueError as exc:
         return json_error(str(exc), 409)
-    return jsonify({'message': 'Te has apuntado al evento', 'event': event_to_dict(event)})
+    return jsonify({'message': 'Te has apuntado al evento', 'event': event_to_dict(event, True)})
+
+
+@event_bp.route('/events/<int:event_id>/registrations', methods=['DELETE'])
+def leave_event(event_id: int):
+    user, error = require_user()
+    if error:
+        return error
+    try:
+        event = event_repo.unregister_user_from_event(event_id, user.id)
+    except LookupError as exc:
+        return json_error(str(exc), 404)
+    except ValueError as exc:
+        return json_error(str(exc), 409)
+    return jsonify({'message': 'Te has desapuntado del evento', 'event': event_to_dict(event, False)})

@@ -63,6 +63,27 @@ def get_event(event_id: int) -> EventEntity | None:
         return db.query(EventEntity).options(joinedload(EventEntity.creator)).filter(EventEntity.id == event_id).first()
 
 
+
+def registered_event_ids(user_id: int, event_ids: list[int]) -> set[int]:
+    if not event_ids:
+        return set()
+    with SessionLocal() as db:
+        rows = (
+            db.query(EventRegistrationEntity.event_id)
+            .filter(EventRegistrationEntity.user_id == user_id)
+            .filter(EventRegistrationEntity.event_id.in_(event_ids))
+            .all()
+        )
+        return {row[0] for row in rows}
+
+
+def is_user_registered(event_id: int, user_id: int) -> bool:
+    with SessionLocal() as db:
+        return db.query(EventRegistrationEntity).filter(
+            EventRegistrationEntity.event_id == event_id,
+            EventRegistrationEntity.user_id == user_id
+        ).first() is not None
+
 def update_event_status(event_id: int, estado: str) -> EventEntity:
     if estado not in VALID_EVENT_STATUS:
         raise ValueError('Estado de evento no válido')
@@ -96,6 +117,24 @@ def register_user_to_event(event_id: int, user_id: int) -> EventEntity:
         db.refresh(event)
         return db.query(EventEntity).options(joinedload(EventEntity.creator)).filter(EventEntity.id == event_id).first()
 
+
+
+def unregister_user_from_event(event_id: int, user_id: int) -> EventEntity:
+    with SessionLocal() as db:
+        event = db.query(EventEntity).filter(EventEntity.id == event_id).with_for_update().first()
+        if not event:
+            raise LookupError('Evento no encontrado')
+        registration = db.query(EventRegistrationEntity).filter(
+            EventRegistrationEntity.event_id == event_id,
+            EventRegistrationEntity.user_id == user_id
+        ).first()
+        if not registration:
+            raise ValueError('No estás apuntado a este evento')
+        db.delete(registration)
+        event.plazas_ocupadas = max((event.plazas_ocupadas or 0) - 1, 0)
+        db.commit()
+        db.refresh(event)
+        return db.query(EventEntity).options(joinedload(EventEntity.creator)).filter(EventEntity.id == event_id).first()
 
 def count_by_status(estado: str) -> int:
     with SessionLocal() as db:

@@ -6,6 +6,7 @@ from backend.entities.base import Base, engine
 from backend.routes.auth_routes import auth_bp
 from backend.routes.event_routes import event_bp
 from backend.routes.mod_routes import mod_bp
+from backend.routes.product_routes import product_bp
 from backend.routes.user_routes import user_bp
 
 
@@ -23,6 +24,7 @@ def create_app(create_tables: bool = True) -> Flask:
     app.register_blueprint(user_bp, url_prefix='/api')
     app.register_blueprint(event_bp, url_prefix='/api')
     app.register_blueprint(mod_bp, url_prefix='/api')
+    app.register_blueprint(product_bp, url_prefix='/api')
 
     @app.route('/api/health', methods=['GET'])
     def health():
@@ -42,6 +44,7 @@ def initialize_database() -> None:
     import backend.entities.user_entity
     import backend.entities.session_entity
     import backend.entities.event_entity
+    import backend.entities.product_entity
     from backend.repositories.user_repo import ensure_default_moderator
 
     Base.metadata.create_all(bind=engine)

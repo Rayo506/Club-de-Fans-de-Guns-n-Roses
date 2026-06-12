@@ -19,3 +19,4 @@ class UserEntity(Base):
     events = relationship('EventEntity', back_populates='creator', cascade='all, delete-orphan')
     sessions = relationship('SessionEntity', back_populates='user', cascade='all, delete-orphan')
     registrations = relationship('EventRegistrationEntity', back_populates='user', cascade='all, delete-orphan')
+    products = relationship('ProductEntity', back_populates='seller', cascade='all, delete-orphan')

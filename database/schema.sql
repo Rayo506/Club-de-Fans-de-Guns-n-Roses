@@ -44,3 +44,19 @@ CREATE INDEX IF NOT EXISTS idx_sessions_user_id ON sessions(user_id);
 CREATE INDEX IF NOT EXISTS idx_events_estado ON events(estado);
 CREATE INDEX IF NOT EXISTS idx_events_fecha ON events(fecha);
 CREATE INDEX IF NOT EXISTS idx_events_creador_id ON events(creador_id);
+
+CREATE TABLE IF NOT EXISTS products (
+    id SERIAL PRIMARY KEY,
+    nombre VARCHAR(160) NOT NULL,
+    vendedor_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    precio NUMERIC(10, 2) NOT NULL DEFAULT 0,
+    categoria VARCHAR(50) NOT NULL,
+    estado VARCHAR(80) NOT NULL,
+    imagen_url VARCHAR(500) NULL,
+    descripcion TEXT NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX IF NOT EXISTS idx_products_vendedor_id ON products(vendedor_id);
+CREATE INDEX IF NOT EXISTS idx_products_categoria ON products(categoria);

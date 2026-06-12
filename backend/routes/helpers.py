@@ -39,7 +39,7 @@ def decimal_to_float(value):
     return value
 
 
-def event_to_dict(event):
+def event_to_dict(event, registrado: bool = False):
     return {
         'id': event.id,
         'titulo': event.titulo,
@@ -56,7 +56,8 @@ def event_to_dict(event):
         'descripcion': event.descripcion,
         'estado': event.estado,
         'created_at': event.created_at.isoformat() if event.created_at else None,
-        'updated_at': event.updated_at.isoformat() if event.updated_at else None
+        'updated_at': event.updated_at.isoformat() if event.updated_at else None,
+        'registrado': bool(registrado)
     }
 
 
@@ -66,4 +67,20 @@ def user_to_dict(user):
         'nombre': user.nombre,
         'email': user.email,
         'role': user.role
+    }
+
+
+def product_to_dict(product):
+    return {
+        'id': product.id,
+        'nombre': product.nombre,
+        'vendedor': product.seller.nombre if product.seller else 'Usuario',
+        'vendedor_email': product.seller.email if product.seller else None,
+        'precio': decimal_to_float(product.precio),
+        'categoria': product.categoria,
+        'estado': product.estado,
+        'imagen_url': product.imagen_url,
+        'descripcion': product.descripcion,
+        'created_at': product.created_at.isoformat() if product.created_at else None,
+        'updated_at': product.updated_at.isoformat() if product.updated_at else None
     }
