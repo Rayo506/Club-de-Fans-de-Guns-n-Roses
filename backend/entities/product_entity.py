@@ -15,6 +15,7 @@ class ProductEntity(Base):
     precio = Column(Numeric(10, 2), nullable=False, default=0)
     categoria = Column(String(50), nullable=False, index=True)
     estado = Column(String(80), nullable=False)
+    estado_validacion = Column(String(20), nullable=False, default='pendiente', index=True)
     imagen_url = Column(String(500), nullable=True)
     descripcion = Column(Text, nullable=False)
     created_at = Column(DateTime, nullable=False, default=datetime.utcnow)

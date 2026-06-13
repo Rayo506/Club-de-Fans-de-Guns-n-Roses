@@ -3,7 +3,7 @@ from decimal import Decimal, InvalidOperation
 from flask import Blueprint, jsonify, request
 
 from backend.repositories import product_repo
-from backend.routes.helpers import json_error, product_to_dict, require_user
+from backend.routes.helpers import current_user, json_error, product_to_dict, require_user
 
 
 product_bp = Blueprint('products', __name__)
@@ -47,7 +47,7 @@ def _parse_product_payload(data: dict):
 def list_products():
     search = request.args.get('search')
     categoria = request.args.get('categoria')
-    products = product_repo.list_products(search=search, categoria=categoria)
+    products = product_repo.list_products(search=search, categoria=categoria, estado_validacion='aprobado')
     return jsonify({'products': [product_to_dict(product) for product in products]})
 
 
@@ -56,6 +56,12 @@ def get_product(product_id: int):
     product = product_repo.get_product(product_id)
     if not product:
         return json_error('Producto no encontrado', 404)
+
+    user = current_user()
+    can_view_private = user and (user.id == product.vendedor_id or user.role in ('moderador', 'admin'))
+    if product.estado_validacion != 'aprobado' and not can_view_private:
+        return json_error('Producto no disponible', 404)
+
     return jsonify({'product': product_to_dict(product)})
 
 
@@ -70,6 +76,6 @@ def create_product():
         return json_error(validation_error, 400)
     product = product_repo.create_product(vendedor_id=user.id, **payload)
     return jsonify({
-        'message': 'Producto publicado correctamente',
+        'message': 'Producto enviado. Queda pendiente de validación por moderación',
         'product': product_to_dict(product)
     }), 201

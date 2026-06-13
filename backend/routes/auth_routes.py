@@ -11,6 +11,11 @@ auth_bp = Blueprint('auth', __name__)
 EMAIL_RE = re.compile(r'^[^@\s]+@[^@\s]+\.[^@\s]+$')
 
 
+def _has_active_session() -> bool:
+    token = request.cookies.get(SESSION_COOKIE_NAME)
+    return bool(session_repo.validate_session(token))
+
+
 def _validate_register_payload(data: dict):
     nombre = (data.get('nombre') or '').strip()
     email = (data.get('email') or '').strip().lower()
@@ -27,6 +32,8 @@ def _validate_register_payload(data: dict):
 
 @auth_bp.route('/auth/register', methods=['POST'])
 def register():
+    if _has_active_session():
+        return json_error('Ya hay una sesión iniciada. Cierra sesión antes de registrar otra cuenta', 409)
     data = request.get_json(silent=True) or {}
     payload, error = _validate_register_payload(data)
     if error:
@@ -45,6 +52,8 @@ def register():
 
 @auth_bp.route('/auth/login', methods=['POST'])
 def login():
+    if _has_active_session():
+        return json_error('Ya hay una sesión iniciada. Cierra sesión antes de entrar con otra cuenta', 409)
     data = request.get_json(silent=True) or {}
     email = (data.get('email') or '').strip().lower()
     password = data.get('password') or ''

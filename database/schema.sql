@@ -52,11 +52,29 @@ CREATE TABLE IF NOT EXISTS products (
     precio NUMERIC(10, 2) NOT NULL DEFAULT 0,
     categoria VARCHAR(50) NOT NULL,
     estado VARCHAR(80) NOT NULL,
+    estado_validacion VARCHAR(20) NOT NULL DEFAULT 'pendiente' CHECK (estado_validacion IN ('pendiente', 'aprobado', 'rechazado')),
     imagen_url VARCHAR(500) NULL,
     descripcion TEXT NOT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
+ALTER TABLE products ADD COLUMN IF NOT EXISTS estado_validacion VARCHAR(20) NOT NULL DEFAULT 'aprobado';
+ALTER TABLE products ALTER COLUMN estado_validacion SET DEFAULT 'pendiente';
+
+DO $$
+BEGIN
+    IF NOT EXISTS (
+        SELECT 1
+        FROM pg_constraint
+        WHERE conname = 'chk_products_estado_validacion'
+    ) THEN
+        ALTER TABLE products
+        ADD CONSTRAINT chk_products_estado_validacion
+        CHECK (estado_validacion IN ('pendiente', 'aprobado', 'rechazado'));
+    END IF;
+END $$;
+
 CREATE INDEX IF NOT EXISTS idx_products_vendedor_id ON products(vendedor_id);
 CREATE INDEX IF NOT EXISTS idx_products_categoria ON products(categoria);
+CREATE INDEX IF NOT EXISTS idx_products_estado_validacion ON products(estado_validacion);

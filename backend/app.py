@@ -1,5 +1,6 @@
 from flask import Flask, jsonify
 from flask_cors import CORS
+from sqlalchemy import text
 
 from backend.config import DEFAULT_MOD_EMAIL, DEFAULT_MOD_NAME, DEFAULT_MOD_PASSWORD, FRONTEND_ORIGIN
 from backend.entities.base import Base, engine
@@ -48,7 +49,29 @@ def initialize_database() -> None:
     from backend.repositories.user_repo import ensure_default_moderator
 
     Base.metadata.create_all(bind=engine)
+    run_light_migrations()
     ensure_default_moderator(DEFAULT_MOD_NAME, DEFAULT_MOD_EMAIL, DEFAULT_MOD_PASSWORD)
+
+
+def run_light_migrations() -> None:
+    with engine.begin() as connection:
+        connection.execute(text("ALTER TABLE products ADD COLUMN IF NOT EXISTS estado_validacion VARCHAR(20) NOT NULL DEFAULT 'aprobado'"))
+        connection.execute(text("ALTER TABLE products ALTER COLUMN estado_validacion SET DEFAULT 'pendiente'"))
+        connection.execute(text("CREATE INDEX IF NOT EXISTS idx_products_estado_validacion ON products(estado_validacion)"))
+        connection.execute(text("""
+            DO $$
+            BEGIN
+                IF NOT EXISTS (
+                    SELECT 1
+                    FROM pg_constraint
+                    WHERE conname = 'chk_products_estado_validacion'
+                ) THEN
+                    ALTER TABLE products
+                    ADD CONSTRAINT chk_products_estado_validacion
+                    CHECK (estado_validacion IN ('pendiente', 'aprobado', 'rechazado'));
+                END IF;
+            END $$;
+        """))
 
 
 app = create_app(create_tables=True)

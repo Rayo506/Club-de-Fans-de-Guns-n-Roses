@@ -28,7 +28,16 @@
     </nav>
 
     <main>
-        <section class="contenedor-formularios">
+        <section class="sesion-activa" id="sesion-activa" style="display: none;">
+            <h2>Sesión iniciada</h2>
+            <p>Has iniciado sesión como <strong id="sesion-activa-nombre">usuario</strong>.</p>
+            <p>Rol actual: <strong id="sesion-activa-rol">fan</strong>.</p>
+            <p>Para iniciar sesión con otra cuenta o registrar una cuenta nueva, primero debes cerrar la sesión actual.</p>
+            <button type="button" class="btn-form" id="btn-login-logout">Cerrar sesión</button>
+            <p id="sesion-activa-mensaje" class="mensaje-form"></p>
+        </section>
+
+        <section class="contenedor-formularios" id="contenedor-formularios-login">
             <div class="columna-login">
                 <h2>Iniciar sesión</h2>
                 <form action="#" method="POST" class="formulario" id="form-login">
@@ -91,7 +100,7 @@
                             <img src="img/mod.png" alt="Icono Moderador">
                         </div>
                         <p class="rol-nombre">Moderador</p>
-                        <p class="rol-desc">Valida eventos pendientes</p>
+                        <p class="rol-desc">Valida eventos y productos pendientes</p>
                     </a>
                 </div>
 
@@ -114,8 +123,8 @@
         <p>&copy; 2026 Club de Fans de Guns n' Roses. Todos los derechos reservados.</p>
         <p>Desarrollado con pasión por el Equipo GRUPO8.</p>
     </footer>
-    <script src="js/api.js"></script>
-    <script src="js/auth.js"></script>
+    <script src="js/api.js?v=4"></script>
+    <script src="js/auth.js?v=4"></script>
 </body>
 
 </html>

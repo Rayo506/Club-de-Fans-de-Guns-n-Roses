@@ -18,10 +18,17 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    function formatStatusText(status) {
+        if (!status) {
+            return '';
+        }
+        return status.charAt(0).toUpperCase() + status.slice(1);
+    }
+
     function statusLabel(status) {
         var span = document.createElement('span');
         span.className = 'estado-pendiente';
-        span.textContent = status.charAt(0).toUpperCase() + status.slice(1);
+        span.textContent = formatStatusText(status);
         return span;
     }
 
@@ -32,6 +39,57 @@ document.addEventListener('DOMContentLoaded', function () {
         button.textContent = text;
         button.addEventListener('click', handler);
         return button;
+    }
+
+    function renderPendingProducts(products) {
+        var body = document.getElementById('tabla-productos-body');
+        if (!body) {
+            return;
+        }
+        body.innerHTML = '';
+        if (!products || products.length === 0) {
+            var emptyRow = document.createElement('tr');
+            var cell = document.createElement('td');
+            cell.colSpan = 5;
+            cell.textContent = 'No hay productos pendientes';
+            emptyRow.appendChild(cell);
+            body.appendChild(emptyRow);
+            return;
+        }
+
+        products.forEach(function (product) {
+            var row = document.createElement('tr');
+
+            var titleCell = document.createElement('td');
+            var link = document.createElement('a');
+            link.href = 'detalle-producto.html?id=' + product.id;
+            link.textContent = product.nombre;
+            titleCell.appendChild(link);
+
+            var userCell = document.createElement('td');
+            userCell.textContent = product.vendedor;
+
+            var dateCell = document.createElement('td');
+            dateCell.textContent = product.created_at ? GNR_API.formatDate(product.created_at.split('T')[0]) : '';
+
+            var statusCell = document.createElement('td');
+            statusCell.appendChild(statusLabel(product.estado_validacion));
+
+            var actionsCell = document.createElement('td');
+            actionsCell.appendChild(actionButton('Aceptar', 'btn-validar', function () {
+                updateProductStatus(product.id, 'aprobado');
+            }));
+            actionsCell.appendChild(actionButton('Rechazar', 'btn-rechazar', function () {
+                updateProductStatus(product.id, 'rechazado');
+            }));
+
+            row.appendChild(titleCell);
+            row.appendChild(userCell);
+            row.appendChild(dateCell);
+            row.appendChild(statusCell);
+            row.appendChild(actionsCell);
+            body.appendChild(row);
+        });
     }
 
     function renderPendingEvents(events) {
@@ -79,20 +137,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    function renderEmptyProducts() {
-        var body = document.getElementById('tabla-productos-body');
-        if (!body) {
-            return;
-        }
-        body.innerHTML = '';
-        var row = document.createElement('tr');
-        var cell = document.createElement('td');
-        cell.colSpan = 5;
-        cell.textContent = 'La moderación de productos queda preparada para una futura ampliación';
-        row.appendChild(cell);
-        body.appendChild(row);
-    }
-
     function renderEmptyReports() {
         var body = document.getElementById('tabla-reportes-body');
         if (!body) {
@@ -116,8 +160,8 @@ document.addEventListener('DOMContentLoaded', function () {
             setCount('cnt-eventos', data.counts.eventos_pendientes);
             setCount('cnt-reportes', data.counts.reportes_pendientes);
             setCount('cnt-usuarios', data.counts.usuarios_registrados);
+            renderPendingProducts(data.pending_products);
             renderPendingEvents(data.pending_events);
-            renderEmptyProducts();
             renderEmptyReports();
         }).catch(function (error) {
             if (error.status === 401 || error.status === 403) {
@@ -134,6 +178,18 @@ document.addEventListener('DOMContentLoaded', function () {
             body: JSON.stringify({ estado: status })
         }).then(function () {
             setMessage('Evento actualizado correctamente', false);
+            loadDashboard();
+        }).catch(function (error) {
+            setMessage(error.message, true);
+        });
+    }
+
+    function updateProductStatus(productId, status) {
+        GNR_API.request('/mod/products/' + productId, {
+            method: 'PATCH',
+            body: JSON.stringify({ estado_validacion: status })
+        }).then(function () {
+            setMessage('Producto actualizado correctamente', false);
             loadDashboard();
         }).catch(function (error) {
             setMessage(error.message, true);

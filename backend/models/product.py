@@ -7,6 +7,7 @@ class Product:
         precio,
         categoria: str,
         estado: str,
+        estado_validacion: str,
         imagen_url: str | None,
         descripcion: str
     ):
@@ -16,5 +17,6 @@ class Product:
         self.precio = precio
         self.categoria = categoria
         self.estado = estado
+        self.estado_validacion = estado_validacion
         self.imagen_url = imagen_url
         self.descripcion = descripcion

@@ -162,3 +162,24 @@
     color: inherit;
     display: block;
 }
+
+.sesion-activa {
+    background-color: #e6f2ff;
+    padding: 35px 30px;
+    margin-bottom: 40px;
+    border-radius: 6px;
+    border: 1px solid #cce3ff;
+}
+
+.sesion-activa h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #004499;
+}
+
+.sesion-activa p {
+    font-size: 15px;
+    color: #222222;
+    margin-bottom: 10px;
+}

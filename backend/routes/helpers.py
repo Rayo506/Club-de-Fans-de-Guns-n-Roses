@@ -79,6 +79,7 @@ def product_to_dict(product):
         'precio': decimal_to_float(product.precio),
         'categoria': product.categoria,
         'estado': product.estado,
+        'estado_validacion': product.estado_validacion,
         'imagen_url': product.imagen_url,
         'descripcion': product.descripcion,
         'created_at': product.created_at.isoformat() if product.created_at else None,

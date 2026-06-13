@@ -79,6 +79,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function addToCart(product) {
         var cart = readCart();
+        if (cart.length > 0) {
+            if (String(cart[0].id) === String(product.id)) {
+                setCartMessage('Ese producto ya está en el carrito');
+            } else {
+                setCartMessage('Solo puedes comprar un producto cada vez. Elimina el producto actual para añadir otro');
+            }
+            if (cartPanel) {
+                cartPanel.style.display = 'block';
+            }
+            return;
+        }
         cart.push({
             id: product.id,
             nombre: product.nombre,
