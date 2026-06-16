@@ -1,4 +1,3 @@
-/* CABECERA: TÍTULO Y BOTÓN "CARRITO" */
 .cabecera-marketplace {
     width: 100%;
     margin-bottom: 30px;
@@ -16,7 +15,6 @@
     color: #1a1a1a;
 }
 
-/* Botón Carrito superior derecho con su contador */
 .btn-carrito {
     float: right;
     background-color: #d9d9d9;
@@ -41,13 +39,11 @@
     margin-right: 8px;
 }
 
-/* BARRA DE FILTROS (BUSCADOR Y SELECTOR DE TIPO) */
 .barra-filtros {
     width: 100%;
     margin-bottom: 35px;
 }
 
-/* Buscador de productos a la izquierda */
 .filtro-buscador {
     float: left;
     width: 45%;
@@ -63,7 +59,7 @@
     box-sizing: border-box;
 }
 
-/* Selector "Tipo de objeto" a la derecha */
+/* "Tipo de objeto" */
 .filtro-controles {
     float: right;
     width: 50%;
@@ -89,29 +85,22 @@
     box-sizing: border-box;
 }
 
-/* CUADRÍCULA DE PRODUCTOS (4 COLUMNAS POR FILA - EN AZUL) */
 .listado-productos {
     width: 100%;
     margin-bottom: 40px;
 }
 
-/* Tarjeta contenedora: Cambiado el marco gris por el azul suave corporativo */
 .tarjeta-producto {
     float: left;
     width: 22%;
-    /* Deja espacio suficiente para márgenes intermedios */
     margin-right: 4%;
-    /* Separación entre columnas */
     margin-bottom: 30px;
-    /* Separación entre filas */
     background-color: #e6f2ff;
     padding: 12px;
     box-sizing: border-box;
     text-align: center;
     border: 1px solid #cce3ff;
-    /* Borde azulado sutil */
     border-radius: 6px;
-    /* Bordes ligeramente redondeados para que quede más moderno */
 }
 
 /* Quita el margen derecho al 4º producto de cada fila para evitar saltos */
@@ -119,7 +108,6 @@
     margin-right: 0;
 }
 
-/* Cuadrado Blanco para la Imagen */
 .producto-img-contenedor {
     width: 100%;
     aspect-ratio: 1 / 1;
@@ -167,7 +155,6 @@
     color: #000000;
 }
 
-/* Enlace "Ver" */
 .link-ver-producto {
     float: right;
     color: #0066cc;
@@ -185,7 +172,6 @@
     border-bottom-right-radius: 4px;
 }
 
-/* Botón "Añadir carrito" rectangular y adaptado al estilo */
 .btn-añadir-carrito {
     width: 100%;
     background-color: #ffffff;
@@ -202,17 +188,14 @@
 .btn-añadir-carrito:hover {
     background-color: #0066cc;
     color: #ffffff;
-    /* Se invierten los colores al pasar el cursor */
 }
 
-/* SECCIÓN INFERIOR: BOTÓN CENTRADO "SUBIR PRODUCTO" */
 .seccion-subir-producto {
     width: 100%;
     text-align: center;
     margin-top: 20px;
     margin-bottom: 40px;
     clear: both;
-    /* Asegura que se sitúe debajo de todas las filas de productos */
 }
 
 .btn-subir-producto {

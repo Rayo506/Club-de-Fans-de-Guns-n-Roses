@@ -1,4 +1,3 @@
-/* CONTENEDOR DE FORMULARIOS (BLOQUE AZULADO SUAVE SUPERIOR) */
 .contenedor-formularios {
     background-color: #e6f2ff;
     padding: 40px 30px;
@@ -7,7 +6,6 @@
     border: 1px solid #cce3ff;
 }
 
-/* Distribución en dos columnas al 50% */
 .columna-login {
     float: left;
     width: 45%;
@@ -20,7 +18,6 @@
     margin-left: 5%;
 }
 
-/* Títulos de los formularios */
 .contenedor-formularios h2 {
     font-size: 24px;
     font-weight: bold;
@@ -28,7 +25,6 @@
     color: #004499;
 }
 
-/* ESTILOS DE LOS CAMPOS Y BOTONES (INPUTS Y LABELS) */
 .campo-form {
     margin-bottom: 20px;
 }
@@ -41,7 +37,7 @@
     font-weight: bold;
 }
 
-/* Las cajas de texto blancas con un sutil borde azulado al enfocarlas */
+/* Las cajas de texto */
 .campo-form input {
     width: 100%;
     max-width: 350px;
@@ -54,7 +50,6 @@
     border-radius: 4px;
 }
 
-/* Botones con estilo acorde a la nueva paleta corporativa */
 .btn-form {
     display: block;
     background-color: #0066cc;
@@ -74,7 +69,6 @@
     background-color: #004499;
 }
 
-/* Enlace de recuperar contraseña */
 .link-olvido {
     display: inline-block;
     font-size: 13px;
@@ -82,13 +76,12 @@
     text-decoration: underline;
 }
 
-/* SECCIÓN INFERIOR: ROLES DE USUARIO (3 COLUMNAS LIMPIAS) */
+/* Roles Users */
 .seccion-roles {
     width: 100%;
     margin-top: 10px;
 }
 
-/* Eliminado el fondo gris plano: Ahora es un título limpio y elegante */
 .titulo-roles {
     text-align: center;
     padding: 12px 0;
@@ -104,7 +97,6 @@
     text-align: center;
 }
 
-/* Cada una de las 3 columnas de roles */
 .tarjeta-role, .tarjeta-rol {
     float: left;
     width: 33.33%;
@@ -112,7 +104,7 @@
     box-sizing: border-box;
 }
 
-/* Cuadrado para los iconos (Eliminado el gris por un fondo blanco o transparente con borde) */
+/* Cuadrado para los iconos */
 .rol-img-placeholder {
     width: 120px;
     height: 120px;
@@ -129,7 +121,7 @@
     object-fit: cover;
 }
 
-/* Textos informativos debajo de los iconos */
+/* Textos info. debajo de los iconos */
 .rol-nombre {
     font-weight: bold;
     font-size: 14px;

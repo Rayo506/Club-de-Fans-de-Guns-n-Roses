@@ -1,4 +1,3 @@
-/* CABECERA: TÍTULO Y BOTÓN "CREAR EVENTO" */
 .cabecera-eventos {
     width: 100%;
     margin-bottom: 30px;
@@ -16,7 +15,6 @@
     color: #1a1a1a;
 }
 
-/* Botón Crear Evento (Estilo rectangular con icono a la izquierda) */
 .btn-crear-evento {
     float: right;
     background-color: #d9d9d9;
@@ -41,13 +39,12 @@
     margin-right: 6px;
 }
 
-/* BARRA DE FILTROS (BUSCADOR, FECHA Y DESPLEGABLE) */
+/* Filtros */
 .barra-filtros {
     width: 100%;
     margin-bottom: 20px;
 }
 
-/* Cuadro de búsqueda de texto a la izquierda */
 .filtro-buscador {
     float: left;
     width: 45%;
@@ -63,7 +60,6 @@
     box-sizing: border-box;
 }
 
-/* Controles de Fecha y Lugar a la derecha */
 .filtro-controles {
     float: right;
     width: 50%;
@@ -79,7 +75,6 @@
     color: #333333;
 }
 
-/* Inputs de fecha y selectores desplegables */
 .filtro-controles input,
 .filtro-controles select {
     height: 38px;
@@ -99,13 +94,12 @@
     width: 110px;
 }
 
-/* LISTADO DE EVENTOS HORIZONTALES (TARJETAS DE FILA) */
 .listado-eventos {
     width: 100%;
     margin-top: 20px;
 }
 
-/* Contenedor tipo fila (Gris suave de fondo del boceto reemplazado por azul sutil) */
+/* Contenedor tipo fila */
 .tarjeta-evento-horizontal {
     background-color: #e6f2ff;
     border: 1px solid #cce3ff;
@@ -116,7 +110,7 @@
     width: 100%;
 }
 
-/* Bloque Izquierdo: Contenedor Blanco de la Imagen */
+/* Bloque Izquierdo */
 .evento-img-contenedor {
     float: left;
     width: 20%;
@@ -133,7 +127,7 @@
     object-fit: cover;
 }
 
-/* Bloque Central: Textos informativos de los eventos */
+/* Bloque Central */
 .evento-detalles {
     float: left;
     width: 55%;
@@ -158,19 +152,18 @@
     color: #0066cc;
 }
 
-/* Bloque Derecho: Botones apilados verticalmente a la derecha */
+/* Bloque Derecho */
 .evento-acciones {
     float: right;
     width: 20%;
     text-align: right;
 }
 
-/* Estilo común para ambos botones de acción */
 .btn-evento-link {
     display: block;
     width: 100%;
     max-width: 140px;
-    float: right; /* Alinea el bloque completo al extremo derecho */
+    float: right;
     text-align: center;
     padding: 8px 0;
     font-size: 13px;
@@ -182,7 +175,6 @@
     transition: background-color 0.2s, color 0.2s;
 }
 
-/* Botón "Ver Evento" (Blanco) */
 .btn-ver {
     background-color: #ffffff;
     color: #0066cc;
@@ -194,7 +186,6 @@
     background-color: #f0f7ff;
 }
 
-/* Botón "Apuntarse" (Blanco) */
 .btn-apuntar {
     background-color: #ffffff;
     color: #333333;

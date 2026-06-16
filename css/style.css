@@ -1,4 +1,3 @@
-/* CONFIGURACIÓN GENERAL Y RESET */
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -11,7 +10,7 @@ body {
     color: #333333;
 }
 
-/* ESTILOS DEL NAV (BARRA DE NAVEGACIÓN) */
+/* Barra de Navegación */
 .nav-global {
     background-color: #ffffff;
     padding: 10px 20px;
@@ -20,7 +19,7 @@ body {
     width: 100%;
 }
 
-/* Bloque Izquierdo: Logo y Título */
+/* Logo y Título */
 .nav-izquierda {
     float: left;
     display: block;
@@ -42,7 +41,7 @@ body {
     color: #1a1a1a;
 }
 
-/* Bloque Derecho: Menú de Navegación */
+/* Menú de Navegación */
 .nav-derecha {
     float: right;
     display: block;
@@ -70,13 +69,12 @@ body {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Azulado claro al pasar el cursor */
 .nav-item a:hover {
     background-color: #e6f2ff;
     color: #0066cc;
 }
 
-/* ESTILOS DEL MAIN (CUERPO DE LA WEB) */
+/* Cuerpo Web */
 main {
     background-color: #ffffff;
     min-height: 400px;
@@ -86,7 +84,7 @@ main {
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
-/* ESTILOS DEL FOOTER (PIE DE PÁGINA) */
+/* Pie de Pagina */
 footer {
     background-color: #000000;
     color: #ffffff;

@@ -1,4 +1,3 @@
-/* Título principal en el mismo tono azul oscuro de la web */
 #producto-titulo {
     color: #004499;
     font-size: 28px;
@@ -7,7 +6,6 @@
     margin-bottom: 20px;
 }
 
-/* Contenedor y alineación de la imagen del producto en el centro */
 .producto-img-detalle {
     text-align: center;
     margin: 25px auto;
@@ -23,7 +21,6 @@
     border: 1px solid #b3d7ff;
 }
 
-/* Espaciados básicos de lectura */
 .producto-info-bloque, 
 .producto-descripcion-bloque {
     margin-top: 20px;
@@ -36,7 +33,6 @@
     margin-bottom: 10px;
 }
 
-/* Centrado del contenedor del botón en la página de detalles */
 .carrito-button-contenedor-detalle {
     text-align: center;
     margin-top: 35px;
@@ -44,14 +40,12 @@
     clear: both;
 }
 
-/* Copiado exacto del aspecto y colores del botón de Marketplace adaptado al detalle */
 .carrito-button-contenedor-detalle .btn-añadir-carrito {
     display: inline-block;
     width: auto;
     min-width: 180px;
     padding: 10px 40px;
     
-    /* Colores del diseño de la tarjeta de Marketplace */
     background-color: #ffffff;
     color: #0066cc;
     border: 1px solid #0066cc;
@@ -63,7 +57,6 @@
     transition: background-color 0.2s, color 0.2s;
 }
 
-/* Efecto hover idéntico: Se invierten los colores al pasar el cursor */
 .carrito-button-contenedor-detalle .btn-añadir-carrito:hover {
     background-color: #0066cc;
     color: #ffffff;
