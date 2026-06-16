@@ -1,3 +1,4 @@
+# Para mapear y gestionar la información de los productos (ciclo de vida y validación antes de ser vendidos)
 class Product:
     def __init__(
         self,

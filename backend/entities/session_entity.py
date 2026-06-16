@@ -5,7 +5,7 @@ from sqlalchemy.orm import relationship
 
 from backend.entities.base import Base
 
-
+# Entidad Sesion (atributos de la BD)
 class SessionEntity(Base):
     __tablename__ = 'sessions'
 

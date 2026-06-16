@@ -1,14 +1,12 @@
 from decimal import Decimal, InvalidOperation
-
 from flask import Blueprint, jsonify, request
-
 from backend.repositories import product_repo
 from backend.routes.helpers import current_user, json_error, product_to_dict, require_user
 
-
+# Rutas del catálogo de productos
 product_bp = Blueprint('products', __name__)
 
-
+# Limpiar, validar formatos y transformar el precio a Decimal de un producto recibido
 def _parse_product_payload(data: dict):
     nombre = (data.get('nombre') or '').strip()
     categoria = (data.get('categoria') or '').strip().lower()
@@ -43,6 +41,7 @@ def _parse_product_payload(data: dict):
     }, None
 
 
+# Listar y filtrar públicamente los artículos del marketplace (aprobados)
 @product_bp.route('/products', methods=['GET'])
 def list_products():
     search = request.args.get('search')
@@ -50,7 +49,7 @@ def list_products():
     products = product_repo.list_products(search=search, categoria=categoria, estado_validacion='aprobado')
     return jsonify({'products': [product_to_dict(product) for product in products]})
 
-
+# Obtener los detalles de un producto (pendiente)
 @product_bp.route('/products/<int:product_id>', methods=['GET'])
 def get_product(product_id: int):
     product = product_repo.get_product(product_id)
@@ -64,7 +63,7 @@ def get_product(product_id: int):
 
     return jsonify({'product': product_to_dict(product)})
 
-
+# Crear y subir un nuevo producto al marketplace dejándolo en estado pendiente
 @product_bp.route('/products', methods=['POST'])
 def create_product():
     user, error = require_user()

@@ -1,17 +1,16 @@
 from datetime import date, time
 from decimal import Decimal
-
 from sqlalchemy import func
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import joinedload
-
 from backend.entities.base import SessionLocal
 from backend.entities.event_entity import EventEntity, EventRegistrationEntity
 from backend.entities.user_entity import UserEntity
 
+# Estados permitidos para el control de moderación de los eventos
 VALID_EVENT_STATUS = {'pendiente', 'aprobado', 'rechazado'}
 
-
+# Registrar y guardar un nuevo evento en la BD
 def create_event(
     creator_id: int,
     titulo: str,
@@ -42,7 +41,7 @@ def create_event(
         event = db.query(EventEntity).options(joinedload(EventEntity.creator)).filter(EventEntity.id == event.id).first()
         return event
 
-
+# Listar y filtrar los eventos almacenados según estado, búsqueda, fecha o lugar
 def list_events(estado: str = 'aprobado', search: str | None = None, fecha: date | None = None, lugar: str | None = None) -> list[EventEntity]:
     with SessionLocal() as db:
         query = db.query(EventEntity).options(joinedload(EventEntity.creator))
@@ -57,13 +56,12 @@ def list_events(estado: str = 'aprobado', search: str | None = None, fecha: date
             query = query.filter(EventEntity.localizacion.ilike(f'%{lugar}%'))
         return query.order_by(EventEntity.fecha.asc(), EventEntity.hora.asc()).all()
 
-
+# Obtener la información completa de un evento específico por su ID
 def get_event(event_id: int) -> EventEntity | None:
     with SessionLocal() as db:
         return db.query(EventEntity).options(joinedload(EventEntity.creator)).filter(EventEntity.id == event_id).first()
 
-
-
+# Obtener los IDs de los eventos a los que se ha inscrito un usuario concreto
 def registered_event_ids(user_id: int, event_ids: list[int]) -> set[int]:
     if not event_ids:
         return set()
@@ -76,7 +74,7 @@ def registered_event_ids(user_id: int, event_ids: list[int]) -> set[int]:
         )
         return {row[0] for row in rows}
 
-
+# Comprobar si un usuario específico ya está inscrito en un evento determinado
 def is_user_registered(event_id: int, user_id: int) -> bool:
     with SessionLocal() as db:
         return db.query(EventRegistrationEntity).filter(
@@ -84,6 +82,7 @@ def is_user_registered(event_id: int, user_id: int) -> bool:
             EventRegistrationEntity.user_id == user_id
         ).first() is not None
 
+# Actualizar el estado de moderación de un evento (aprobar o rechazar)
 def update_event_status(event_id: int, estado: str) -> EventEntity:
     if estado not in VALID_EVENT_STATUS:
         raise ValueError('Estado de evento no válido')
@@ -96,7 +95,7 @@ def update_event_status(event_id: int, estado: str) -> EventEntity:
         db.refresh(event)
         return db.query(EventEntity).options(joinedload(EventEntity.creator)).filter(EventEntity.id == event_id).first()
 
-
+# Inscribir a un usuario en un evento controlando el aforo (bloqueo concurrente)
 def register_user_to_event(event_id: int, user_id: int) -> EventEntity:
     with SessionLocal() as db:
         event = db.query(EventEntity).filter(EventEntity.id == event_id).with_for_update().first()
@@ -117,8 +116,7 @@ def register_user_to_event(event_id: int, user_id: int) -> EventEntity:
         db.refresh(event)
         return db.query(EventEntity).options(joinedload(EventEntity.creator)).filter(EventEntity.id == event_id).first()
 
-
-
+# Cancelar la inscripción de un usuario a un evento y liberar una plaza
 def unregister_user_from_event(event_id: int, user_id: int) -> EventEntity:
     with SessionLocal() as db:
         event = db.query(EventEntity).filter(EventEntity.id == event_id).with_for_update().first()
@@ -136,11 +134,12 @@ def unregister_user_from_event(event_id: int, user_id: int) -> EventEntity:
         db.refresh(event)
         return db.query(EventEntity).options(joinedload(EventEntity.creator)).filter(EventEntity.id == event_id).first()
 
+# Contar la cantidad total de eventos globales según su estado
 def count_by_status(estado: str) -> int:
     with SessionLocal() as db:
         return db.query(EventEntity).filter(EventEntity.estado == estado).count()
 
-
+# Recopilar las métricas de administración globales del panel de control
 def dashboard_summary() -> dict:
     with SessionLocal() as db:
         pending_events = db.query(EventEntity).options(joinedload(EventEntity.creator)).filter(EventEntity.estado == 'pendiente').order_by(EventEntity.created_at.desc()).all()

@@ -1,15 +1,14 @@
 from decimal import Decimal
-
 from sqlalchemy.orm import joinedload
-
 from backend.entities.base import SessionLocal
 from backend.entities.product_entity import ProductEntity
 
-
+# Categorias válidas permitidas dentro del marketplace
 VALID_CATEGORIES = {'ropa', 'accesorios', 'instrumentos', 'musica', 'merch'}
+# Estados permitidos para el control de moderación de los productos
 VALID_MODERATION_STATES = {'pendiente', 'aprobado', 'rechazado'}
 
-
+# Registrar y guardar un nuevo producto en el marketplace de la BD
 def create_product(
     vendedor_id: int,
     nombre: str,
@@ -35,7 +34,7 @@ def create_product(
         db.refresh(product)
         return db.query(ProductEntity).options(joinedload(ProductEntity.seller)).filter(ProductEntity.id == product.id).first()
 
-
+# Función interna auxiliar para aplicar filtros de búsqueda por texto o categoría a la consulta
 def _apply_filters(query, search: str | None = None, categoria: str | None = None):
     if search:
         pattern = f'%{search.strip()}%'
@@ -44,7 +43,7 @@ def _apply_filters(query, search: str | None = None, categoria: str | None = Non
         query = query.filter(ProductEntity.categoria == categoria.strip().lower())
     return query
 
-
+# Listar y filtrar los productos del catálogo según texto, categoría o su estado de validación
 def list_products(
     search: str | None = None,
     categoria: str | None = None,
@@ -57,12 +56,12 @@ def list_products(
             query = query.filter(ProductEntity.estado_validacion == estado_validacion)
         return query.order_by(ProductEntity.created_at.desc()).all()
 
-
+# Obtener la información completa de un producto específico por su ID
 def get_product(product_id: int) -> ProductEntity | None:
     with SessionLocal() as db:
         return db.query(ProductEntity).options(joinedload(ProductEntity.seller)).filter(ProductEntity.id == product_id).first()
 
-
+# Actualizar el estado de validación de un producto (aprobar o rechazar el artículo)
 def update_product_status(product_id: int, estado_validacion: str) -> ProductEntity:
     normalized = (estado_validacion or '').strip().lower()
     if normalized not in VALID_MODERATION_STATES:
@@ -77,7 +76,7 @@ def update_product_status(product_id: int, estado_validacion: str) -> ProductEnt
         db.refresh(product)
         return db.query(ProductEntity).options(joinedload(ProductEntity.seller)).filter(ProductEntity.id == product_id).first()
 
-
+# Recopilar las métricas de productos del panel de control y obtener los últimos pendientes
 def dashboard_summary() -> dict:
     with SessionLocal() as db:
         pending_products = (

@@ -1,3 +1,4 @@
+# Para manipular la información de los eventos (provienen o se dirigen en la BD)
 class Event:
     def __init__(
         self,

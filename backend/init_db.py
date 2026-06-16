@@ -1,6 +1,6 @@
 from backend.app import initialize_database
 
-
+# Para inicializar
 if __name__ == '__main__':
     initialize_database()
     print('Base de datos inicializada')

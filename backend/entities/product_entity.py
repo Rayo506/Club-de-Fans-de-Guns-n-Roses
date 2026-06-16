@@ -5,7 +5,7 @@ from sqlalchemy.orm import relationship
 
 from backend.entities.base import Base
 
-
+# Entidad Producto (atributos de la BD)
 class ProductEntity(Base):
     __tablename__ = 'products'
 

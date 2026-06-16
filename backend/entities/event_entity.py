@@ -5,7 +5,7 @@ from sqlalchemy.orm import relationship
 
 from backend.entities.base import Base
 
-
+# Entidad Evento (atributos de la BD)
 class EventEntity(Base):
     __tablename__ = 'events'
 
@@ -27,7 +27,7 @@ class EventEntity(Base):
     creator = relationship('UserEntity', back_populates='events')
     registrations = relationship('EventRegistrationEntity', back_populates='event', cascade='all, delete-orphan')
 
-
+# Entidad Evento al Registrarlo (atributos de la BD)
 class EventRegistrationEntity(Base):
     __tablename__ = 'event_registrations'
     __table_args__ = (UniqueConstraint('event_id', 'user_id', name='uq_event_user_registration'),)

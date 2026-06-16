@@ -1,12 +1,11 @@
 from flask import Blueprint, jsonify, request
-
 from backend.repositories import event_repo, product_repo
 from backend.routes.helpers import event_to_dict, json_error, product_to_dict, require_moderator, user_to_dict
 
-
+# Configuración las rutas del panel de moderación
 mod_bp = Blueprint('moderation', __name__)
 
-
+# Recopilar las métricas globales y listar elementos pendientes
 @mod_bp.route('/mod/dashboard', methods=['GET'])
 def dashboard():
     user, error = require_moderator()
@@ -31,7 +30,7 @@ def dashboard():
         'reports': []
     })
 
-
+# Listar y filtrar los eventos del sistema según su estado
 @mod_bp.route('/mod/events', methods=['GET'])
 def list_events_for_moderation():
     _, error = require_moderator()
@@ -41,7 +40,7 @@ def list_events_for_moderation():
     events = event_repo.list_events(estado=estado)
     return jsonify({'events': [event_to_dict(event) for event in events]})
 
-
+# Actualizar el estado de un evento específico
 @mod_bp.route('/mod/events/<int:event_id>', methods=['PATCH'])
 def update_event_status(event_id: int):
     _, error = require_moderator()
@@ -57,7 +56,7 @@ def update_event_status(event_id: int):
         return json_error(str(exc), 400)
     return jsonify({'message': 'Estado actualizado', 'event': event_to_dict(event)})
 
-
+# Listar y filtrar los productos del marketplace según su estado de validación actual
 @mod_bp.route('/mod/products', methods=['GET'])
 def list_products_for_moderation():
     _, error = require_moderator()
@@ -67,7 +66,7 @@ def list_products_for_moderation():
     products = product_repo.list_products(estado_validacion=estado)
     return jsonify({'products': [product_to_dict(product) for product in products]})
 
-
+# Actualizar el estado de validación de un producto
 @mod_bp.route('/mod/products/<int:product_id>', methods=['PATCH'])
 def update_product_status(product_id: int):
     _, error = require_moderator()

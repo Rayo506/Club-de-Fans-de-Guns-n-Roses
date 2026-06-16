@@ -5,7 +5,7 @@ from sqlalchemy.orm import relationship
 
 from backend.entities.base import Base
 
-
+# Entidad User (atributos de la BD)
 class UserEntity(Base):
     __tablename__ = 'users'
 

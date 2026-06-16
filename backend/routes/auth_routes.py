@@ -1,21 +1,20 @@
 import re
-
 from flask import Blueprint, jsonify, make_response, request
-
 from backend.config import SESSION_COOKIE_NAME, SESSION_MAX_AGE
 from backend.repositories import session_repo, user_repo
 from backend.routes.helpers import json_error, user_to_dict
 
-
+# Ruta de autenticación
 auth_bp = Blueprint('auth', __name__)
+# Validar que el formato de un email sea correcto
 EMAIL_RE = re.compile(r'^[^@\s]+@[^@\s]+\.[^@\s]+$')
 
-
+# Comprobar si la petición HTTP actual ya cuenta con una sesión de usuario activa
 def _has_active_session() -> bool:
     token = request.cookies.get(SESSION_COOKIE_NAME)
     return bool(session_repo.validate_session(token))
 
-
+# Validar la longitud y el formato de los datos recibidos en el registro
 def _validate_register_payload(data: dict):
     nombre = (data.get('nombre') or '').strip()
     email = (data.get('email') or '').strip().lower()
@@ -29,7 +28,7 @@ def _validate_register_payload(data: dict):
         return None, 'La contraseña debe tener al menos 8 caracteres'
     return {'nombre': nombre, 'email': email, 'password': password}, None
 
-
+# Procesar el registro de nuevas cuentas de usuario (comprovacion del formato)
 @auth_bp.route('/auth/register', methods=['POST'])
 def register():
     if _has_active_session():
@@ -49,7 +48,7 @@ def register():
         return json_error(str(exc), 409)
     return jsonify({'message': 'Usuario registrado correctamente', 'user': user_to_dict(user)}), 201
 
-
+# Autenticar las credenciales del usuario 
 @auth_bp.route('/auth/login', methods=['POST'])
 def login():
     if _has_active_session():
@@ -77,7 +76,7 @@ def login():
     )
     return response
 
-
+# Eliminar la sesión
 @auth_bp.route('/auth/logout', methods=['POST'])
 def logout():
     token = request.cookies.get(SESSION_COOKIE_NAME)

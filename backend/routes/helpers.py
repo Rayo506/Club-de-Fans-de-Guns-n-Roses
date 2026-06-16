@@ -1,27 +1,25 @@
 from decimal import Decimal
-
 from flask import jsonify, request
-
 from backend.config import SESSION_COOKIE_NAME
 from backend.repositories import session_repo
 
-
+# Error en formato JSON con su código de estado HTTP
 def json_error(message: str, status_code: int):
     return jsonify({'error': message}), status_code
 
-
+# Recuperar al usuario de la sesión actual
 def current_user():
     token = request.cookies.get(SESSION_COOKIE_NAME)
     return session_repo.validate_session(token)
 
-
+# Autenticación en una ruta y bloquear el acceso (401 si no hay sesión)
 def require_user():
     user = current_user()
     if not user:
         return None, json_error('No autenticado', 401)
     return user, None
 
-
+# Restringir mediante el rol de moderador o administrador
 def require_moderator():
     user, error = require_user()
     if error:
@@ -30,7 +28,7 @@ def require_moderator():
         return None, json_error('No tienes permiso para acceder a esta zona', 403)
     return user, None
 
-
+# Convertir valores numéricos (Decimal a  Float)
 def decimal_to_float(value):
     if value is None:
         return None
@@ -38,7 +36,7 @@ def decimal_to_float(value):
         return float(value)
     return value
 
-
+# Transformar entidad Event a diccionario (listo para enviar a la API)
 def event_to_dict(event, registrado: bool = False):
     return {
         'id': event.id,
@@ -60,7 +58,7 @@ def event_to_dict(event, registrado: bool = False):
         'registrado': bool(registrado)
     }
 
-
+# Transformar objeto User a diccionario (listo para enviar a la API)
 def user_to_dict(user):
     return {
         'id': user.id,
@@ -69,7 +67,7 @@ def user_to_dict(user):
         'role': user.role
     }
 
-
+# Transformar entidad Product a diccionario (listo para enviar a la API)
 def product_to_dict(product):
     return {
         'id': product.id,

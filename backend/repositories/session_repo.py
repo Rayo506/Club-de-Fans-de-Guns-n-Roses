@@ -1,19 +1,18 @@
 import secrets
 from datetime import datetime, timedelta
-
 from backend.config import SESSION_MAX_AGE
 from backend.entities.base import SessionLocal
 from backend.entities.session_entity import SessionEntity
 from backend.entities.user_entity import UserEntity
 from backend.models.user import User
 
-
+# Convertir una entidad de la BD (UserEntity) al modelo de dominio (User)
 def _to_model(entity: UserEntity | None) -> User | None:
     if not entity:
         return None
     return User(id=entity.id, nombre=entity.nombre, email=entity.email, role=entity.role)
 
-
+# Crear una sesión nueva en la BD y generar un token seguro para el usuario
 def create_session(user_id: int) -> str:
     token = secrets.token_urlsafe(48)
     expires_at = datetime.utcnow() + timedelta(seconds=SESSION_MAX_AGE)
@@ -23,7 +22,7 @@ def create_session(user_id: int) -> str:
         db.commit()
     return token
 
-
+# Validar el token de sesión recibido, comprobar su expiración y recuperar al usuario
 def validate_session(token: str | None) -> User | None:
     if not token:
         return None
@@ -38,7 +37,7 @@ def validate_session(token: str | None) -> User | None:
         user_entity = db.query(UserEntity).filter(UserEntity.id == session_entity.user_id).first()
         return _to_model(user_entity)
 
-
+# Cerrar la sesión de un usuario eliminando de forma definitiva su token de la BD
 def delete_session(token: str | None) -> None:
     if not token:
         return

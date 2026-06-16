@@ -1,15 +1,13 @@
 from datetime import datetime
 from decimal import Decimal, InvalidOperation
-
 from flask import Blueprint, jsonify, request
-
 from backend.repositories import event_repo
 from backend.routes.helpers import current_user, event_to_dict, json_error, require_user
 
-
+# Rutas de la cartelera de eventos
 event_bp = Blueprint('events', __name__)
 
-
+# Limpiar, validar formatos de fecha/hora y verificar las plazas de un evento recibido
 def _parse_event_payload(data: dict):
     titulo = (data.get('titulo') or '').strip()
     fecha_raw = (data.get('fecha') or '').strip()
@@ -68,7 +66,7 @@ def _parse_event_payload(data: dict):
         'descripcion': descripcion
     }, None
 
-
+# Listar y filtrar públicamente los eventos aprobados (indicando si está inscrito)
 @event_bp.route('/events', methods=['GET'])
 def list_public_events():
     search = request.args.get('search')
@@ -87,7 +85,7 @@ def list_public_events():
         registered = event_repo.registered_event_ids(user.id, [event.id for event in events])
     return jsonify({'events': [event_to_dict(event, event.id in registered) for event in events]})
 
-
+# Obtener la información detallada de un evento (pendiente)
 @event_bp.route('/events/<int:event_id>', methods=['GET'])
 def get_public_event(event_id: int):
     event = event_repo.get_event(event_id)
@@ -100,7 +98,7 @@ def get_public_event(event_id: int):
     registrado = event_repo.is_user_registered(event.id, user.id) if user else False
     return jsonify({'event': event_to_dict(event, registrado)})
 
-
+# Crear y proponer un nuevo evento en el sistema dejándolo a la espera de ser aprobado
 @event_bp.route('/events', methods=['POST'])
 def create_event():
     user, error = require_user()
@@ -116,7 +114,7 @@ def create_event():
         'event': event_to_dict(event)
     }), 201
 
-
+# Inscribir usuario autenticado en un evento
 @event_bp.route('/events/<int:event_id>/registrations', methods=['POST'])
 def join_event(event_id: int):
     user, error = require_user()
@@ -130,7 +128,7 @@ def join_event(event_id: int):
         return json_error(str(exc), 409)
     return jsonify({'message': 'Te has apuntado al evento', 'event': event_to_dict(event, True)})
 
-
+# Cancelar inscripción usuario autenticado en un evento
 @event_bp.route('/events/<int:event_id>/registrations', methods=['DELETE'])
 def leave_event(event_id: int):
     user, error = require_user()
