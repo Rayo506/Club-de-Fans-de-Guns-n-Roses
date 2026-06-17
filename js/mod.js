@@ -1,8 +1,10 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // Controla el panel de moderacion
     var welcome = document.getElementById('moderador-bienvenida');
     var logoutLink = document.getElementById('btn-mod-logout');
     var message = document.getElementById('mod-mensaje');
 
+    // Muestra mensajes de error o de operacion correcta
     function setMessage(text, isError) {
         if (!message) {
             return;
@@ -11,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
         message.className = isError ? 'mensaje-mod mensaje-error' : 'mensaje-mod mensaje-ok';
     }
 
+    // Actualiza los contadores del panel
     function setCount(id, value) {
         var element = document.getElementById(id);
         if (element) {
@@ -25,6 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
         return status.charAt(0).toUpperCase() + status.slice(1);
     }
 
+    // Crea etiquetas para el estado pendiente, aprobado o rechazado
     function statusLabel(status) {
         var span = document.createElement('span');
         span.className = 'estado-pendiente';
@@ -32,6 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
         return span;
     }
 
+    // Crea los botones de aceptar y rechazar
     function actionButton(text, className, handler) {
         var button = document.createElement('button');
         button.type = 'button';
@@ -41,6 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
         return button;
     }
 
+    // Pinta la tabla de productos pendientes
     function renderPendingProducts(products) {
         var body = document.getElementById('tabla-productos-body');
         if (!body) {
@@ -92,6 +98,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Pinta la tabla de eventos pendientes
     function renderPendingEvents(events) {
         var body = document.getElementById('tabla-eventos-body');
         if (!body) {
@@ -137,6 +144,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Los reportes se dejan vacios porque no estan implementados aun
     function renderEmptyReports() {
         var body = document.getElementById('tabla-reportes-body');
         if (!body) {
@@ -151,6 +159,7 @@ document.addEventListener('DOMContentLoaded', function () {
         body.appendChild(row);
     }
 
+    // Carga el resumen del panel desde el backend
     function loadDashboard() {
         GNR_API.request('/mod/dashboard').then(function (data) {
             if (welcome) {
@@ -164,6 +173,7 @@ document.addEventListener('DOMContentLoaded', function () {
             renderPendingEvents(data.pending_events);
             renderEmptyReports();
         }).catch(function (error) {
+            // Si el usuario no tiene permisos, lo manda al login
             if (error.status === 401 || error.status === 403) {
                 window.location.href = 'login.html';
                 return;
@@ -172,6 +182,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Cambia el estado de un evento desde moderacion
     function updateEventStatus(eventId, status) {
         GNR_API.request('/mod/events/' + eventId, {
             method: 'PATCH',
@@ -184,6 +195,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Cambia el estado de validacion de un producto
     function updateProductStatus(productId, status) {
         GNR_API.request('/mod/products/' + productId, {
             method: 'PATCH',
@@ -196,6 +208,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Permite cerrar sesion desde el panel
     if (logoutLink) {
         logoutLink.addEventListener('click', function (event) {
             event.preventDefault();

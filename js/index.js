@@ -1,8 +1,10 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // Controla el boton de leer mas en la pagina principal
     var readMoreButton = document.getElementById('btn-leer-mas');
     var infoExtra = document.getElementById('info-extra');
 
     if (readMoreButton && infoExtra) {
+        // Muestra u oculta informacion extra de la banda
         readMoreButton.addEventListener('click', function () {
             if (infoExtra.classList.contains('contenido-oculto')) {
                 infoExtra.classList.remove('contenido-oculto');
@@ -14,12 +16,14 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Carga los tres ultimos eventos aprobados
     var eventContainer = document.getElementById('eventos-js');
     if (eventContainer && window.GNR_API) {
         GNR_API.request('/events').then(function (data) {
             var events = (data.events || []).slice(0, 3);
             eventContainer.innerHTML = '';
 
+            // Si no hay eventos, muestra un aviso
             if (events.length === 0) {
                 var empty = document.createElement('p');
                 empty.textContent = 'Todavía no hay eventos aprobados.';
@@ -27,6 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 return;
             }
 
+            // Crea las tarjetas pequeñas de eventos en la pagina de inicio
             events.forEach(function (event) {
                 var article = document.createElement('article');
                 article.className = 'tarjeta-evento';
@@ -65,6 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
             var clearFinal = document.createElement('div');
             clearFinal.style.clear = 'both';
             eventContainer.appendChild(clearFinal);
+        // Si falla la carga, enseña un mensaje simple
         }).catch(function () {
             eventContainer.innerHTML = '<p>No se pudieron cargar los eventos.</p>';
         });

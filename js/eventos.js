@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // Controla la lista de eventos y sus filtros
     var container = document.getElementById('eventos-contenedor-js');
     var searchInput = document.getElementById('buscar-evento');
     var dateInput = document.getElementById('filtro-fecha');
@@ -7,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var message = document.getElementById('eventos-mensaje');
     var allEvents = [];
 
+    // Muestra mensajes de la pagina de eventos
     function setMessage(text, isError) {
         if (!message) {
             return;
@@ -22,6 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    // Crea cada tarjeta de evento desde JavaScript
     function createEventCard(event) {
         var article = document.createElement('article');
         article.className = 'tarjeta-evento-horizontal';
@@ -42,6 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
         details.appendChild(title);
         details.appendChild(meta);
 
+        // Cada evento tiene boton para verlo y para apuntarse
         var actions = document.createElement('div');
         actions.className = 'evento-acciones';
         var viewLink = document.createElement('a');
@@ -53,6 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
         joinButton.href = '#';
         joinButton.className = 'btn-evento-link btn-apuntar';
         joinButton.textContent = event.registrado ? 'Desapuntarse' : 'Apuntarse';
+        // Apunta o desapunta al usuario desde la propia lista
         joinButton.addEventListener('click', function (clickEvent) {
             clickEvent.preventDefault();
             var method = event.registrado ? 'DELETE' : 'POST';
@@ -82,6 +87,7 @@ document.addEventListener('DOMContentLoaded', function () {
         return article;
     }
 
+    // Filtra eventos por texto, fecha y lugar
     function filterEvents() {
         var search = searchInput ? searchInput.value.trim().toLowerCase() : '';
         var date = dateInput ? dateInput.value : '';
@@ -96,6 +102,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Si no hay eventos, muestra un mensaje
     function renderEvents() {
         if (!container) {
             return;
@@ -113,6 +120,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Carga los eventos aprobados desde el backend
     function loadEvents() {
         clearMessage();
         GNR_API.request('/events').then(function (data) {
@@ -123,12 +131,14 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // El boton de crear evento lleva al formulario
     if (createButton) {
         createButton.addEventListener('click', function () {
             window.location.href = 'crear-evento.html';
         });
     }
 
+    // Los filtros actualizan la lista sin recargar la pagina
     [searchInput, dateInput, placeInput].forEach(function (input) {
         if (input) {
             input.addEventListener('input', renderEvents);

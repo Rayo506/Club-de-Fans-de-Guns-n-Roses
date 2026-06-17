@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // Controla el marketplace y el carrito
     var container = document.getElementById('productos-contenedor-js');
     var searchInput = document.getElementById('buscar-productos');
     var typeInput = document.getElementById('filtro-type');
@@ -11,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var productMessage = document.getElementById('productos-mensaje');
     var allProducts = [];
 
+    // Muestra mensajes de productos
     function setProductMessage(text, isError) {
         if (!productMessage) {
             return;
@@ -25,6 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    // Lee y guarda el carrito en localStorage
     function readCart() {
         try {
             return JSON.parse(localStorage.getItem('gnr_cart') || '[]');
@@ -37,6 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
         localStorage.setItem('gnr_cart', JSON.stringify(cart));
     }
 
+    // Pinta el carrito con los productos guardados
     function renderCart() {
         var cart = readCart();
         if (cartCount) {
@@ -59,6 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
             var name = document.createElement('span');
             name.textContent = item.nombre + ' - ' + GNR_API.formatPrice(item.precio);
 
+            // Permite eliminar productos del carrito
             var removeButton = document.createElement('button');
             removeButton.type = 'button';
             removeButton.className = 'btn-eliminar-carrito';
@@ -77,6 +82,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Solo deja añadir un producto cada vez al carrito
     function addToCart(product) {
         var cart = readCart();
         if (cart.length > 0) {
@@ -103,6 +109,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    // Crea cada tarjeta de producto desde JavaScript
     function createProductCard(product) {
         var article = document.createElement('article');
         article.className = 'tarjeta-producto';
@@ -157,6 +164,7 @@ document.addEventListener('DOMContentLoaded', function () {
         return article;
     }
 
+    // Filtra productos por texto y categoria
     function filteredProducts() {
         var search = searchInput ? searchInput.value.trim().toLowerCase() : '';
         var type = typeInput ? typeInput.value : 'todos';
@@ -167,6 +175,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Pinta los productos que coinciden con la busqueda
     function renderProducts() {
         if (!container) {
             return;
@@ -187,6 +196,7 @@ document.addEventListener('DOMContentLoaded', function () {
         container.appendChild(clear);
     }
 
+    // Carga los productos aprobados desde el backend
     function loadProducts() {
         GNR_API.request('/products').then(function (data) {
             allProducts = data.products || [];
@@ -196,12 +206,14 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // El boton del carrito enseña u oculta el panel
     if (cartButton && cartPanel) {
         cartButton.addEventListener('click', function () {
             cartPanel.style.display = cartPanel.style.display === 'block' ? 'none' : 'block';
         });
     }
 
+    // La compra solo muestra un mensaje porque no esta implementada
     if (buyButton) {
         buyButton.addEventListener('click', function () {
             setCartMessage('La compra todavía no está disponible.');

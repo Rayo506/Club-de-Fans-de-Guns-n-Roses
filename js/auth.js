@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // Controla la pagina de login, registro y sesion activa
     var loginForm = document.getElementById('form-login');
     var registerForm = document.getElementById('form-registro');
     var loginMessage = document.getElementById('login-mensaje');
@@ -13,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var loginLogoutButton = document.getElementById('btn-login-logout');
     var currentSessionUser = null;
 
+    // Enseña mensajes de error o de que todo ha ido bien en los formularios
     function showMessage(element, text, isError) {
         if (!element) {
             return;
@@ -21,6 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
         element.className = isError ? 'mensaje-form mensaje-error' : 'mensaje-form mensaje-ok';
     }
 
+    // Cambia el nombre del rol para que se vea mas normal en pantalla
     function roleLabel(role) {
         if (role === 'admin') {
             return 'administrador';
@@ -31,6 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
         return 'usuario';
     }
 
+    // Si ya hay sesion, se ocultan los formularios y se muestra el usuario
     function showLoggedIn(user) {
         currentSessionUser = user;
         if (formsContainer) {
@@ -47,6 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    // Si no hay nadie logeado, se vuelven a enseñar login y registro
     function showLoggedOut() {
         currentSessionUser = null;
         if (formsContainer) {
@@ -57,6 +62,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    // Solo deja entrar al panel si el usuario es moderador o admin
     function goToConsoleIfAllowed(event) {
         event.preventDefault();
         var user = currentSessionUser;
@@ -81,12 +87,14 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Al entrar en la pagina se comprueva si ya habia una sesion iniciada
     GNR_API.getMe().then(function (data) {
         showLoggedIn(data.user);
     }).catch(function () {
         showLoggedOut();
     });
 
+    // Cierra sesion y recarga la pagina
     if (loginLogoutButton) {
         loginLogoutButton.addEventListener('click', function () {
             showMessage(activeSessionMessage, 'Cerrando sesión...', false);
@@ -98,6 +106,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Los accesos de moderador y admin usan la misma comprovacion
     if (roleModerator) {
         roleModerator.addEventListener('click', goToConsoleIfAllowed);
     }
@@ -106,6 +115,7 @@ document.addEventListener('DOMContentLoaded', function () {
         roleAdmin.addEventListener('click', goToConsoleIfAllowed);
     }
 
+    // Envia los datos del login al backend
     if (loginForm) {
         loginForm.addEventListener('submit', function (event) {
             event.preventDefault();
@@ -120,6 +130,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 password: document.getElementById('login-password').value
             };
 
+            // Si el login es correcto, manda al usuario a su pagina correspondiente
             GNR_API.request('/auth/login', {
                 method: 'POST',
                 body: JSON.stringify(payload)
@@ -136,6 +147,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Envia los datos del registro al backend
     if (registerForm) {
         registerForm.addEventListener('submit', function (event) {
             event.preventDefault();
@@ -151,6 +163,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 password: document.getElementById('reg-password').value
             };
 
+            // Si el registro sale bien, limpia el formulario
             GNR_API.request('/auth/register', {
                 method: 'POST',
                 body: JSON.stringify(payload)

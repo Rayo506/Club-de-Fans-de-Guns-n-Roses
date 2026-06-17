@@ -1,10 +1,12 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // Carga el id del evento desde la URL
     var params = new URLSearchParams(window.location.search);
     var eventId = params.get('id');
     var message = document.getElementById('detalle-evento-mensaje');
     var joinButton = document.getElementById('btn-apuntar-evento');
     var currentEvent = null;
 
+    // Muestra avisos del detalle del evento
     function setMessage(text, isError) {
         if (!message) {
             return;
@@ -13,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
         message.className = isError ? 'mensaje-eventos mensaje-error' : 'mensaje-eventos mensaje-ok';
     }
 
+    // Cambia el boton segun si el usuario ya esta apuntado o no
     function updateJoinButton(event) {
         if (!joinButton) {
             return;
@@ -25,6 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    // Pinta en pantalla toda la informacion del evento
     function renderEvent(event) {
         currentEvent = event;
         GNR_API.setText('evento-titulo', event.titulo);
@@ -45,6 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
         updateJoinButton(event);
     }
 
+    // Si no hay id de evento, se bloquea el boton
     if (!eventId) {
         setMessage('No se ha indicado el evento', true);
         if (joinButton) {
@@ -53,6 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
     }
 
+    // Pide al backend los datos del evento seleccionado
     GNR_API.request('/events/' + eventId).then(function (data) {
         renderEvent(data.event);
     }).catch(function (error) {
@@ -63,6 +69,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     if (joinButton) {
+        // Al pulsar el boton, apunta o desapunta al usuario
         joinButton.addEventListener('click', function () {
             if (!currentEvent) {
                 return;
@@ -75,6 +82,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 setMessage(currentEvent.registrado ? 'Te has apuntado al evento' : 'Te has desapuntado del evento', false);
             }).catch(function (error) {
                 setMessage(error.message, true);
+                // Si el usuario no esta logeado, lo manda al login
                 if (error.status === 401) {
                     window.location.href = 'login.html';
                 }
